@@ -1,11 +1,84 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/styles/style.css' />
-  </head>
-  <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
-  </body>
-</html>
+
+<head>
+    <meta name="description" content="Create a dynamic flickr signature for forums, emails and web pages - the photos update themselves!" />
+    <meta name="keywords" content="flickr, signature, dynamic, url, latest, photos, images" />
+
+    <title>Flickr Signature Generator and Dynamic Flickr Links</title>
+
+    <link rel="stylesheet" type="text/css" href="/styles/flicksig.css" />
+
+    <script type="text/javascript">
+        var domain = '<%= domain %>';
+    </script>
+
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+    <script type="text/javascript" src="/scripts/flicksig.js"></script>
+
+</head>
+
+<body>
+
+<div id="wrap">
+
+    <div>
+        <h1><span style="color: #0063DC;">Flick</span><span style="color: #FF0084">r</span> Signature Generator</h1>
+        <p>Use this page to create a Flickr signature to use on forums, message boards, web pages and emails.  The photos will <strong>update automatically</strong> as you upload new photos or other photos become more popular.</p>
+
+        <p>My flickr photostream is at
+            <input type="text" id="username" value="http://www.flickr.com/photos/mendhak/" />
+        </p>
+        Get the
+        <input type="text" id="latest" maxlength="2" value="5" />
+        <select id="sort">
+            <option value="">latest</option>
+            <option value="p">most popular</option>
+        </select>
+        photos as
+        <select id="size">
+            <option value="s">small squares</option>
+            <option value="q">large squares</option>
+            <option value="t">thumbnails</option>
+            <option value="m">small (240px)</option>
+            <option value="n">small (320px)</option>
+            <option value="x">medium (500px)</option>
+            <option value="z">medium (640px)</option>
+            <option value="c">medium (800px)</option>
+            <option value="b">large</option>
+        </select>
+        and link to
+        <select id="linkto">
+            <option value="1">their photo page</option>
+            <option value="2">my photostream</option>
+            <option value="3">nothing</option>
+        </select>
+        </p>
+        <div id="generateDiv">
+            <a class="generate" id="generate">Generate</a>
+            <img id="loading" src="/images/progress.gif" />
+        </div>
+        <br />
+        <p class="tiny">HTML code (web pages, emails):
+            <textarea id="htmlcode"><a href="http://<%= domain %>/url/69135870@N00/1"><img src="http://<%= domain %>/img/69135870@N00/1/s" /></a><a href="http://<%= domain %>/url/69135870@N00/2"><img src="http://<%= domain %>/img/69135870@N00/2/s" /></a><a href="http://<%= domain %>/url/69135870@N00/3"><img src="http://<%= domain %>/img/69135870@N00/3/s" /></a><a href="http://<%= domain %>/url/69135870@N00/4"><img src="http://<%= domain %>/img/69135870@N00/4/s" /></a><a href="http://<%= domain %>/url/69135870@N00/5"><img src="http://<%= domain %>/img/69135870@N00/5/s" /></a></textarea>
+        </p>
+        <p class="tiny">BB code (message boards, forums):
+            <textarea id="bbcode">[url=http://<%= domain %>/url/69135870@N00/1][img]http://<%= domain %>/img/69135870@N00/1/s[/img][/url][url=http://<%= domain %>/url/69135870@N00/2][img]http://<%= domain %>/img/69135870@N00/2/s[/img][/url][url=http://<%= domain %>/url/69135870@N00/3][img]http://<%= domain %>/img/69135870@N00/3/s[/img][/url][url=http://<%= domain %>/url/69135870@N00/4][img]http://<%= domain %>/img/69135870@N00/4/s[/img][/url][url=http://<%= domain %>/url/69135870@N00/5][img]http://<%= domain %>/img/69135870@N00/5/s[/img][/url]</textarea>
+        </p>
+        <br />
+
+    </div>
+
+</div>
+
+<div id="preview">
+
+    <a href="http://<%= domain %>/url/69135870@N00/1/"><img src="http://<%= domain %>/img/69135870@N00/1/s/" /></a><a href="http://<%= domain %>/url/69135870@N00/2/"><img src="http://<%= domain %>/img/69135870@N00/2/s/" /></a><a href="http://<%= domain %>/url/69135870@N00/3/"><img src="http://<%= domain %>/img/69135870@N00/3/s/" /></a><a href="http://<%= domain %>/url/69135870@N00/4/"><img src="http://<%= domain %>/img/69135870@N00/4/s/" /></a><a href="http://<%= domain %>/url/69135870@N00/5/"><img src="http://<%= domain %>/img/69135870@N00/5/s/" /></a>
+
+</div>
+
+<a class="sourcelink" href="https://github.com/mendhak/flickrsignature">Source code</a>
+
+</body>
+</html> 
+
