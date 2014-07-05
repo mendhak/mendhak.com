@@ -70,6 +70,56 @@ router.get('/img/:nsid/:num?/:size?/:popular?', function(req, res){
     });
 });
 
+router.get('/url/:nsid/:num?/:popular?', function(req, res){
+    //Set defaults
+    var num = 1;
+    var size = 'm';
+    var popular = 'date-posted-desc';
+    var username = req.params.nsid;
+
+    if(req.params.num && !isNaN(req.params.num)){
+        num = req.params.num;
+    }
+
+
+    if(req.params.popular && req.params.popular=='p'){
+        popular = 'interestingness-desc';
+    }
+
+    //Get NSID
+    getUserNsid(username, req.cookies, function(nsid, err){
+        if(nsid){
+            //Set cookie for next time
+            res.cookie("nsid_"+username, nsid, { maxAge: 3600000, path: '/' });
+
+            //Search for photo
+            flickr.photos.search({
+                user_id: nsid,
+                per_page: 1,
+                page: num,
+                sort: popular
+            }, function(err, result){
+
+                if(!err && result.photos && result.photos.photo.length > 0){
+                    //Image found, get URL
+                    var imgUrl = "http://www.flickr.com/photos/" + nsid + "/" + result.photos.photo[0].id;
+                    //Send redirect
+                    res.redirect(imgUrl);
+                } else {
+                    //Image not found or error.  Bad request
+                    res.setHeader("X-Error", err);
+                    res.send("", 400);
+                }
+            });
+        }
+        else{
+            res.setHeader("X-Error", err);
+            res.send("", 400);
+        }
+    });
+
+});
+
 //GET /nsid/username
 router.get('/nsid/*', function(req, res){
 
