@@ -10,10 +10,88 @@ Flickr.tokenOnly(flickrOptions, function(error, flickrapi) {
     flickr = flickrapi;
 });
 
-
-
+// Signature generator page
 router.get('/', function(req, res) {
   res.render('index', { title: 'Express', domain: req.headers.host });
+});
+
+
+//GET /img/mendhak/1/s/
+router.get('/img/:nsid/:num?/:size?/:popular?', function(req, res){
+
+    //Set defaults
+    var num = 1;
+    var size = 'm';
+    var popular = 'date-posted-desc';
+    var username = req.params.nsid;
+
+    if(req.params.num && !isNaN(req.params.num)){
+        num = req.params.num;
+    }
+
+    if(req.params.size){
+        size = req.params.size;
+    }
+
+    if(req.params.popular && req.params.popular=='p'){
+        popular = 'interestingness-desc';
+    }
+
+    //Get NSID
+    getUserNsid(username, req.cookies, function(nsid, err){
+        if(nsid){
+            //Set cookie for next time
+            res.cookie("nsid_"+username, nsid, { maxAge: 3600000, path: '/' });
+
+            //Search for photo
+            flickr.photos.search({
+                user_id: nsid,
+                per_page: 1,
+                page: num,
+                sort: popular
+            }, function(err, result){
+
+                if(!err && result.photos && result.photos.photo.length > 0){
+                    //Image found, get URL
+                    var imgUrl = getImageUrl(result.photos.photo[0], size);
+                    //Send redirect
+                    res.redirect(imgUrl);
+                } else {
+                    //Image not found or error.  Bad request
+                    res.setHeader("X-Error", err);
+                    res.send("", 400);
+                }
+            });
+        }
+        else{
+            res.setHeader("X-Error", err);
+            res.send("", 400);
+        }
+    });
+});
+
+//GET /nsid/username
+router.get('/nsid/*', function(req, res){
+
+    var username = req.params[0];
+
+    //Extract from URL
+    if(username.indexOf('http://') > -1){
+        var regexHttp = /photos\/([^/]+)\/?/;
+        var match = regexHttp.exec(username);
+        username = match[1];
+    }
+
+    getUserNsid(username, req.cookies, function(nsid, err){
+        if(nsid){
+            res.cookie("nsid_"+username, nsid, { maxAge: 3600000, path: '/' });
+            res.send(nsid);
+        }
+        else{
+            res.setHeader("X-Error", err);
+            res.send("", 400);
+        }
+    });
 });
 
 
@@ -55,50 +133,6 @@ function getImageUrl(photo, size) {
 //    return "http://farm{0}.static.flickr.com/{1}/{2}_{3}{4}.jpg".format(selectedPhoto.farm, selectedPhoto.server, selectedPhoto.id, selectedPhoto.secret, size)
 
 }
-router.get('/img/:nsid/:num?/:size?/:popular?', function(req, res){
-
-    var num = 1;
-
-    var size = 'm';
-    var popular = 'date-posted-desc';
-    var username = req.params.nsid;
-
-    if(req.params.num && !isNaN(req.params.num)){
-        num = req.params.num;
-    }
-
-    if(req.params.size){
-        size = req.params.size;
-    }
-
-    if(req.params.popular && req.params.popular=='p'){
-        popular = 'interestingness-desc';
-    }
-
-    getUserNsid(username, req.cookies, function(nsid, err){
-        if(nsid){
-            res.cookie("nsid_"+username, nsid, { maxAge: 3600000, path: '/' });
-
-            flickr.photos.search({
-                user_id: nsid,
-                per_page: 1,
-                page: num,
-                sort: popular
-            }, function(err, result){
-                if(!err && result.photos && result.photos.photo.length > 0){
-                    var imgUrl = getImageUrl(result.photos.photo[0], size);
-                    res.redirect(imgUrl);
-                } else {
-                    res.send("", 400);
-                }
-            });
-        }
-        else{
-            res.setHeader("X-Error", err);
-            res.send("", 400);
-        }
-    });
-});
 
 function getUserNsid(username, cookies, callback) {
 
@@ -123,34 +157,7 @@ function getUserNsid(username, cookies, callback) {
             callback(null, err);
         }
     });
-
 }
-
-router.get('/nsid/*', function(req, res){
-
-    var username = req.params[0];
-
-    if(username.indexOf('http://') > -1){
-        var regexHttp = /photos\/([^/]+)\/?/;
-        var match = regexHttp.exec(username);
-        username = match[1];
-//        var match = myRegexp.exec(myString);
-//        alert(match[1]);  // abc
-    }
-
-    getUserNsid(username, req.cookies, function(nsid, err){
-        if(nsid){
-            res.cookie("nsid_"+username, nsid, { maxAge: 3600000, path: '/' });
-            res.send(nsid);
-        }
-        else{
-            res.setHeader("X-Error", err);
-            res.send("", 400);
-        }
-    });
-});
-
-
 
 
 module.exports = router;
