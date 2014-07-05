@@ -21,6 +21,36 @@ router.get('/', function (req, res) {
     res.render('index', { title: 'Express', domain: req.headers.host });
 });
 
+router.get('/full/*', function(req, res){
+
+    var imageId = req.params[0];
+
+    flickr.photos.getSizes({
+        photo_id: imageId
+    }, function(err, results){
+        var photoUrl;
+        results.sizes.size.forEach(function(element, index, array){
+            console.log(element);
+            if(element.label != 'Original'){
+                photoUrl = element.source;
+            }
+        });
+
+
+        res.render('fullscreen',
+            {
+                'hexColor': '#000000',
+                'photoUrl': photoUrl,
+                'returnUrl': "http://www.flickr.com/photo.gne?id=" + imageId,
+                'fullWidth': true
+            }
+        );
+    });
+
+
+
+});
+
 // /signatures page now moved to front page
 router.get('/signatures', function (req, res) {
     res.redirect('/');
@@ -200,6 +230,8 @@ router.get('/gettitlefromurl/*', function (req, res) {
 
     request({ url: url, method: "HEAD", followRedirect: false }, sendResponse);
 });
+
+
 
 function getImageUrl(photo, size) {
 
