@@ -7,22 +7,22 @@ var Flickr = require("flickrapi"),
     flickrOptions = {
         api_key: apiKey //,
     };
-Flickr.tokenOnly(flickrOptions, function(error, flickrapi) {
+Flickr.tokenOnly(flickrOptions, function (error, flickrapi) {
     flickr = flickrapi;
 });
 
 // Signature generator page
-router.get('/', function(req, res) {
-  res.render('index', { title: 'Express', domain: req.headers.host });
+router.get('/', function (req, res) {
+    res.render('index', { title: 'Express', domain: req.headers.host });
 });
 
 // /signatures page now moved to front page
-router.get('/signatures', function(req, res){
-   res.redirect('/');
+router.get('/signatures', function (req, res) {
+    res.redirect('/');
 });
 
 //GET /img/mendhak/1/s/
-router.get('/img/:nsid/:num?/:size?/:popular?', function(req, res){
+router.get('/img/:nsid/:num?/:size?/:popular?', function (req, res) {
 
     //Set defaults
     var num = 1;
@@ -30,23 +30,23 @@ router.get('/img/:nsid/:num?/:size?/:popular?', function(req, res){
     var popular = 'date-posted-desc';
     var username = req.params.nsid;
 
-    if(req.params.num && !isNaN(req.params.num)){
+    if (req.params.num && !isNaN(req.params.num)) {
         num = req.params.num;
     }
 
-    if(req.params.size){
+    if (req.params.size) {
         size = req.params.size;
     }
 
-    if(req.params.popular && req.params.popular=='p'){
+    if (req.params.popular && req.params.popular == 'p') {
         popular = 'interestingness-desc';
     }
 
     //Get NSID
-    getUserNsid(username, req.cookies, function(nsid, err){
-        if(nsid){
+    getUserNsid(username, req.cookies, function (nsid, err) {
+        if (nsid) {
             //Set cookie for next time
-            res.cookie("nsid_"+username, nsid, { maxAge: 3600000, path: '/' });
+            res.cookie("nsid_" + username, nsid, { maxAge: 3600000, path: '/' });
 
             //Search for photo
             flickr.photos.search({
@@ -54,9 +54,9 @@ router.get('/img/:nsid/:num?/:size?/:popular?', function(req, res){
                 per_page: 1,
                 page: num,
                 sort: popular
-            }, function(err, result){
+            }, function (err, result) {
 
-                if(!err && result.photos && result.photos.photo.length > 0){
+                if (!err && result.photos && result.photos.photo.length > 0) {
                     //Image found, get URL
                     var imgUrl = getImageUrl(result.photos.photo[0], size);
                     res.setHeader("Title", result.photos.photo[0].title);
@@ -69,34 +69,34 @@ router.get('/img/:nsid/:num?/:size?/:popular?', function(req, res){
                 }
             });
         }
-        else{
+        else {
             res.setHeader("X-Error", err);
             res.send("", 400);
         }
     });
 });
 
-router.get('/url/:nsid/:num?/:popular?', function(req, res){
+router.get('/url/:nsid/:num?/:popular?', function (req, res) {
     //Set defaults
     var num = 1;
     var size = 'm';
     var popular = 'date-posted-desc';
     var username = req.params.nsid;
 
-    if(req.params.num && !isNaN(req.params.num)){
+    if (req.params.num && !isNaN(req.params.num)) {
         num = req.params.num;
     }
 
 
-    if(req.params.popular && req.params.popular=='p'){
+    if (req.params.popular && req.params.popular == 'p') {
         popular = 'interestingness-desc';
     }
 
     //Get NSID
-    getUserNsid(username, req.cookies, function(nsid, err){
-        if(nsid){
+    getUserNsid(username, req.cookies, function (nsid, err) {
+        if (nsid) {
             //Set cookie for next time
-            res.cookie("nsid_"+username, nsid, { maxAge: 3600000, path: '/' });
+            res.cookie("nsid_" + username, nsid, { maxAge: 3600000, path: '/' });
 
             //Search for photo
             flickr.photos.search({
@@ -104,9 +104,9 @@ router.get('/url/:nsid/:num?/:popular?', function(req, res){
                 per_page: 1,
                 page: num,
                 sort: popular
-            }, function(err, result){
+            }, function (err, result) {
 
-                if(!err && result.photos && result.photos.photo.length > 0){
+                if (!err && result.photos && result.photos.photo.length > 0) {
                     //Image found, get URL
                     var imgUrl = "http://www.flickr.com/photos/" + nsid + "/" + result.photos.photo[0].id;
                     //Send redirect
@@ -118,7 +118,7 @@ router.get('/url/:nsid/:num?/:popular?', function(req, res){
                 }
             });
         }
-        else{
+        else {
             res.setHeader("X-Error", err);
             res.send("", 400);
         }
@@ -127,36 +127,36 @@ router.get('/url/:nsid/:num?/:popular?', function(req, res){
 });
 
 //GET /nsid/username
-router.get('/nsid/*', function(req, res){
+router.get('/nsid/*', function (req, res) {
 
     var username = req.params[0];
 
     //Extract from URL
-    if(username.indexOf('http://') > -1){
+    if (username.indexOf('http://') > -1) {
         var regexHttp = /photos\/([^/]+)\/?/;
         var match = regexHttp.exec(username);
         username = match[1];
     }
 
-    getUserNsid(username, req.cookies, function(nsid, err){
-        if(nsid){
-            res.cookie("nsid_"+username, nsid, { maxAge: 3600000, path: '/' });
+    getUserNsid(username, req.cookies, function (nsid, err) {
+        if (nsid) {
+            res.cookie("nsid_" + username, nsid, { maxAge: 3600000, path: '/' });
             res.send(nsid);
         }
-        else{
+        else {
             res.setHeader("X-Error", err);
             res.send("", 400);
         }
     });
 });
 
-router.get('/gettitlefromurl/*', function(req, res){
-   var url = req.params[0];
-    request({ url: url, method: "HEAD", followRedirect: false } , function(error, response, body) {
-        if(!error){
+router.get('/gettitlefromurl/*', function (req, res) {
+    var url = req.params[0];
+    request({ url: url, method: "HEAD", followRedirect: false }, function (error, response, body) {
+        if (!error) {
             res.send(response.headers.title);
         } else {
-            res.send("",400);
+            res.send("", 400);
         }
 
 
@@ -167,7 +167,7 @@ function getImageUrl(photo, size) {
 
     var sizePrefix = "_";
 
-    if(size == 'x'){
+    if (size == 'x') {
         sizePrefix = '';
         size = '';
     }
@@ -205,20 +205,20 @@ function getImageUrl(photo, size) {
 function getUserNsid(username, cookies, callback) {
 
     //If it contains @, it's already an NSID
-    if(username.indexOf('@') > -1){
+    if (username.indexOf('@') > -1) {
         callback(username, null);
         return;
     }
 
     //Check if a cookie already contains this value
-    if(cookies["nsid_" + username] && cookies["nsid_" + username].length > 0){
+    if (cookies["nsid_" + username] && cookies["nsid_" + username].length > 0) {
         callback(cookies["nsid_" + username], null);
         return;
     }
 
     //Call the Flickr API
-    flickr.urls.lookupUser( {url :"http://www.flickr.com/photos/" + username } , function(err, result){
-        if(!err && result.user){
+    flickr.urls.lookupUser({url: "http://www.flickr.com/photos/" + username }, function (err, result) {
+        if (!err && result.user) {
             callback(result.user.id, null);
         } else {
             console.log(err);
