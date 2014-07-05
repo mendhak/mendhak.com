@@ -1,7 +1,12 @@
 var apiKey = "a39dfdf51784c76fa3234f88bec38b0e";
 var express = require('express');
 var request = require("request");
+
+var Memcached = require('memcached');
+var memcached = new Memcached("127.0.0.1:11211");
+
 var router = express.Router();
+
 var flickr;
 var Flickr = require("flickrapi"),
     flickrOptions = {
@@ -24,27 +29,19 @@ router.get('/signatures', function (req, res) {
 //GET /img/mendhak/1/s/
 router.get('/img/:nsid/:num?/:size?/:popular?', function (req, res) {
 
-    //Set defaults
-    var num = 1;
-    var size = 'm';
-    var popular = 'date-posted-desc';
-    var username = req.params.nsid;
-
-    if (req.params.num && !isNaN(req.params.num)) {
-        num = req.params.num;
-    }
-
-    if (req.params.size) {
-        size = req.params.size;
-    }
-
-    if (req.params.popular && req.params.popular == 'p') {
-        popular = 'interestingness-desc';
-    }
 
     var sendResponse = function (err, flickrSearchResults) {
 
         if (!err && flickrSearchResults.photos && flickrSearchResults.photos.photo.length > 0) {
+
+            memcached.set(cacheKey, flickrSearchResults, 600, function (err)
+            {
+                if(err){
+                    console.log(err);
+                }
+
+            });
+
             //Image found, get URL
             var imgUrl = getImageUrl(flickrSearchResults.photos.photo[0], size);
             res.setHeader("Title", flickrSearchResults.photos.photo[0].title);
@@ -76,9 +73,35 @@ router.get('/img/:nsid/:num?/:size?/:popular?', function (req, res) {
         }
     };
 
-    //Get NSID
-    getUserNsid(username, req.cookies, performSearch);
+    //Set defaults
+    var num = 1;
+    var size = 'm';
+    var popular = 'date-posted-desc';
+    var username = req.params.nsid;
 
+
+
+    if (req.params.num && !isNaN(req.params.num)) {
+        num = req.params.num;
+    }
+
+    if (req.params.size) {
+        size = req.params.size;
+    }
+
+    if (req.params.popular && req.params.popular == 'p') {
+        popular = 'interestingness-desc';
+    }
+
+    var cacheKey = "img" + req.params.nsid + req.params.num + req.params.size + req.params.popular;
+    memcached.get(cacheKey, function (err, data){
+        if(!data || err){
+            //Get NSID
+            getUserNsid(username, req.cookies, performSearch);
+        } else {
+            sendResponse(null, data);
+        }
+    });
 
 });
 
@@ -231,15 +254,30 @@ function getUserNsid(username, cookies, callback) {
         return;
     }
 
-    //Call the Flickr API
-    flickr.urls.lookupUser({url: "http://www.flickr.com/photos/" + username }, function (err, result) {
-        if (!err && result.user) {
-            callback(result.user.id, null);
+    //Check memcached
+    var cacheKey = "nsid_" + username;
+    memcached.get(cacheKey, function (err, data){
+        if(!data || err){
+            //Call the Flickr API
+            flickr.urls.lookupUser({url: "http://www.flickr.com/photos/" + username }, function (err, result) {
+                if (!err && result.user) {
+                    memcached.set(cacheKey,result.user.id, 600, function(err){
+                        if(err){
+                            console.log(err);
+                        }
+                    });
+                    callback(result.user.id, null);
+                } else {
+                    console.log(err);
+                    callback(null, err);
+                }
+            });
         } else {
-            console.log(err);
-            callback(null, err);
+            callback(data,null);
         }
     });
+
+
 }
 
 
