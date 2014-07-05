@@ -1,5 +1,6 @@
 var apiKey = "a39dfdf51784c76fa3234f88bec38b0e";
 var express = require('express');
+var request = require("request");
 var router = express.Router();
 var flickr;
 var Flickr = require("flickrapi"),
@@ -54,6 +55,7 @@ router.get('/img/:nsid/:num?/:size?/:popular?', function(req, res){
                 if(!err && result.photos && result.photos.photo.length > 0){
                     //Image found, get URL
                     var imgUrl = getImageUrl(result.photos.photo[0], size);
+                    res.setHeader("Title", result.photos.photo[0].title);
                     //Send redirect
                     res.redirect(imgUrl);
                 } else {
@@ -144,6 +146,18 @@ router.get('/nsid/*', function(req, res){
     });
 });
 
+router.get('/gettitlefromurl/*', function(req, res){
+   var url = req.params[0];
+    request({ url: url, method: "HEAD", followRedirect: false } , function(error, response, body) {
+        if(!error){
+            res.send(response.headers.title);
+        } else {
+            res.send("",400);
+        }
+
+
+    });
+});
 
 function getImageUrl(photo, size) {
 
