@@ -16,6 +16,10 @@ router.get('/', function(req, res) {
   res.render('index', { title: 'Express', domain: req.headers.host });
 });
 
+// /signatures page now moved to front page
+router.get('/signatures', function(req, res){
+   res.redirect('/');
+});
 
 //GET /img/mendhak/1/s/
 router.get('/img/:nsid/:num?/:size?/:popular?', function(req, res){
