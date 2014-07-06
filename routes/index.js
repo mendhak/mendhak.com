@@ -44,7 +44,6 @@ router.get('/full/*', function(req, res){
 
             res.render('fullscreen',
                 {
-                    'hexColor': '#000000',
                     'photoUrl': photoUrl,
                     'returnUrl': "http://www.flickr.com/photo.gne?id=" + imageId
                 }
