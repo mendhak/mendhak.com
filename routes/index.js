@@ -21,14 +21,23 @@ router.get('/', function (req, res) {
     res.render('index', { title: 'Express', domain: req.headers.host });
 });
 
-router.get('/full/*', function(req, res){
+router.get('/full/?*?', function(req, res){
 
     var imageId = req.params[0];
+
+    if(!imageId){
+        res.send("",400);
+        return;
+    }
 
     if(imageId.indexOf('http://')> -1 || imageId.indexOf('https://')> -1){
         var regexHttp = /photos\/([^/]+)\/([^/]+)\/?/;
         var match = regexHttp.exec(imageId);
         imageId = match[2];
+    }
+
+    if(imageId.indexOf('/') > -1){
+        imageId = imageId.replace('/','');
     }
 
     flickr.photos.getSizes({
