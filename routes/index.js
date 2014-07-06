@@ -25,12 +25,18 @@ router.get('/full/*', function(req, res){
 
     var imageId = req.params[0];
 
+    if(imageId.indexOf('http://')> -1){
+        var regexHttp = /photos\/([^/]+)\/([^/]+)\/?/;
+        var match = regexHttp.exec(imageId);
+        imageId = match[2];
+        console.log(imageId);
+    }
+
     flickr.photos.getSizes({
         photo_id: imageId
     }, function(err, results){
         var photoUrl;
         results.sizes.size.forEach(function(element, index, array){
-            console.log(element);
             if(element.label != 'Original'){
                 photoUrl = element.source;
             }
@@ -41,8 +47,7 @@ router.get('/full/*', function(req, res){
             {
                 'hexColor': '#000000',
                 'photoUrl': photoUrl,
-                'returnUrl': "http://www.flickr.com/photo.gne?id=" + imageId,
-                'fullWidth': true
+                'returnUrl': "http://www.flickr.com/photo.gne?id=" + imageId
             }
         );
     });
