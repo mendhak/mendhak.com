@@ -29,27 +29,31 @@ router.get('/full/*', function(req, res){
         var regexHttp = /photos\/([^/]+)\/([^/]+)\/?/;
         var match = regexHttp.exec(imageId);
         imageId = match[2];
-        console.log(imageId);
     }
 
     flickr.photos.getSizes({
         photo_id: imageId
     }, function(err, results){
-        var photoUrl;
-        results.sizes.size.forEach(function(element, index, array){
-            if(element.label != 'Original'){
-                photoUrl = element.source;
-            }
-        });
+        if(!err){
+            var photoUrl;
+            results.sizes.size.forEach(function(element, index, array){
+                if(element.label != 'Original'){
+                    photoUrl = element.source;
+                }
+            });
 
+            res.render('fullscreen',
+                {
+                    'hexColor': '#000000',
+                    'photoUrl': photoUrl,
+                    'returnUrl': "http://www.flickr.com/photo.gne?id=" + imageId
+                }
+            );
+        } else
+        {
+            res.send("",400);
+        }
 
-        res.render('fullscreen',
-            {
-                'hexColor': '#000000',
-                'photoUrl': photoUrl,
-                'returnUrl': "http://www.flickr.com/photo.gne?id=" + imageId
-            }
-        );
     });
 
 
