@@ -25,7 +25,7 @@ router.get('/full/*', function(req, res){
 
     var imageId = req.params[0];
 
-    if(imageId.indexOf('http://')> -1){
+    if(imageId.indexOf('http://')> -1 || imageId.indexOf('https://')> -1){
         var regexHttp = /photos\/([^/]+)\/([^/]+)\/?/;
         var match = regexHttp.exec(imageId);
         imageId = match[2];
