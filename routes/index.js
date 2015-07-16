@@ -3,6 +3,9 @@ var express = require('express');
 var request = require("request");
 
 var Memcached = require('memcached');
+Memcached.config.timeout = 2000;
+Memcached.config.retry = 2000;
+Memcached.config.retries = 2;
 var memcached = new Memcached("127.0.0.1:11211");
 
 var router = express.Router();
@@ -111,7 +114,8 @@ router.get('/img/:nsid/:num?/:size?/:popular?', function (req, res) {
                 user_id: nsid,
                 per_page: 1,
                 page: num,
-                sort: popular
+                sort: popular,
+                extras: "url_sq,url_s,url_q,url_t,url_m,url_n,url_z,url_l,url_c,url_b,url_h,url_k,url_o"
             }, sendResponse);
         }
         else {
@@ -252,16 +256,12 @@ router.get('/gettitlefromurl/*', function (req, res) {
 
 function getImageUrl(photo, size) {
 
-    var sizePrefix = "_";
-
-    if (size == 'x') {
-        sizePrefix = '';
-        size = '';
+    if (photo["url_"+size] == null) {
+        size = 'l';
     }
 
-    size = sizePrefix + size;
-
-    return "http://farm" + photo.farm + ".static.flickr.com/" + photo.server + "/" + photo.id + "_" + photo.secret + size + ".jpg";
+    //return "http://farm" + photo.farm + ".static.flickr.com/" + photo.server + "/" + photo.id + "_" + photo.secret + size + ".jpg";
+    return photo["url_"+size];
 
 //    if size == 'small' or size == '240':
 //    size = 'm'
