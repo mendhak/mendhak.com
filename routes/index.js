@@ -19,9 +19,14 @@ Flickr.tokenOnly(flickrOptions, function (error, flickrapi) {
     flickr = flickrapi;
 });
 
-// Signature generator page
+
 router.get('/', function (req, res) {
-    res.render('index', { title: 'Express', domain: req.headers.host });
+    res.render('index', { title: 'Mendhak', domain: req.headers.host });
+});
+
+// Signature generator page
+router.get('/generator', function (req, res) {
+    res.render('generator', { title: 'Generator', domain: req.headers.host });
 });
 
 router.get('/full/?*?', function(req, res){
@@ -249,7 +254,7 @@ router.get('/gettitlefromurl/*', function (req, res) {
         }
     };
 
-    request({ url: url, method: "HEAD", followRedirect: false }, sendResponse);
+    request({ url: 'http://' + req.headers.host +  url, method: "HEAD", followRedirect: false }, sendResponse);
 });
 
 
