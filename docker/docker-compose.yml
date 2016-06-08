@@ -1,0 +1,8 @@
+web:
+  container_name: mendhakweb
+  build: .
+  volumes:
+    - "../:/src"
+  ports:
+    - "3030:3000"
+    - "35729:11211"
