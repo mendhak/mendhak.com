@@ -1,6 +1,7 @@
 web:
   container_name: mendhakweb
   build: .
+  restart: always
   volumes:
     - "../:/src"
   ports:
