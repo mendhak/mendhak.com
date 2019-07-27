@@ -205,7 +205,7 @@
 				
 				/***End load initial images***/
 				flickrLoaded = true;
-				ready();
+				//setTimeout(function () { ready(); });
     		}//End AJAX Callback 
     	 });
 
@@ -218,7 +218,7 @@
 			resizenow();
 		});
 		
-		$(window).on('load', function() {
+		$(window).load(function() {
 			ready();
 		});
 		
