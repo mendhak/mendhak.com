@@ -8,12 +8,16 @@
 	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 	
     <link rel="stylesheet" href="css/supersized.css" type="text/css" media="screen" />
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
     <script type="text/javascript" src="js/supersized.flickr.1.1.2.js"></script>
     <script type="text/javascript" src="js/jquery.touchwipe.min.js"></script>
     
+    
 	<script type="text/javascript">
-	
+    
+        var touchDevice = ('ontouchstart' in document.documentElement);
+        console.log(touchDevice);
+    
 		jQuery(function($){
 			$.supersized({
 			
@@ -23,8 +27,8 @@
 				start_slide             :   1,		//Start slide (0 is random)
 				random					: 	1,		//Randomize slide order (Ignores start slide)
 				slide_interval          :   8000,	//Length between transitions
-				transition              :   1, 		//0-None, 1-Fade, 2-Slide Top, 3-Slide Right, 4-Slide Bottom, 5-Slide Left, 6-Carousel Right, 7-Carousel Left
-				transition_speed		:	1850,	//Speed of transition
+				transition              :   (touchDevice) ? 3 : 1, 		//0-None, 1-Fade, 2-Slide Top, 3-Slide Right, 4-Slide Bottom, 5-Slide Left, 6-Carousel Right, 7-Carousel Left
+				transition_speed		:	(touchDevice) ? 350 : 1800,	//Speed of transition
 				new_window				:	1,		//Image links open in new window/tab
 				pause_hover             :   0,		//Pause slideshow on hover
 				keyboard_nav            :   1,		//Keyboard navigation on/off
@@ -57,7 +61,22 @@
 				sort_direction		:    0,		//0-descending, 1-ascending
                 api_key					:	'92da12e7f9430472a8ce2276d8bfb3e5'		//Flickr API Key
 					
-			}); 
+            }); 
+            
+
+            $("#supersized").swipe( {
+                //Generic swipe handler for all directions
+                swipe:function(event, direction, distance, duration, fingerCount, fingerData) {
+                    if(direction === "left"){
+                        $("#nextslide").click();
+                    }
+                    if(direction === "right"){
+                        $("#prevslide").click();
+                    }
+                }
+            });
+
+
         });
        
 
