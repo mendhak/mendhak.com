@@ -1,9 +1,0 @@
-web:
-  container_name: mendhakweb
-  build: .
-  restart: always
-  volumes:
-    - "../:/src"
-  ports:
-    - "3030:3000"
-    - "35729:11211"
