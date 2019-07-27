@@ -135,16 +135,16 @@
     	switch(options.source){
 		    		
 	    	case 1:		//From a Set
-	    		var flickrURL =  'https://api.flickr.com/services/rest/?&method=flickr.photosets.getPhotos&extras=url_k,url_q&api_key=' + options.api_key + '&photoset_id=' + options.set + '&per_page=' + options.total_slides + '&sort=' + sort_order + '&format=json&jsoncallback=?';
+	    		var flickrURL =  'https://api.flickr.com/services/rest/?&method=flickr.photosets.getPhotos&extras=url_k,url_q,url_o&api_key=' + options.api_key + '&photoset_id=' + options.set + '&per_page=' + options.total_slides + '&sort=' + sort_order + '&format=json&jsoncallback=?';
 	    		break;
 	    	case 2:		//From a User
-	    		var flickrURL =  'https://api.flickr.com/services/rest/?format=json&method=flickr.photos.search&extras=url_k,url_q&api_key=' + options.api_key + '&user_id=' + options.user + '&per_page=' + options.total_slides + '&sort=' + sort_order + '&jsoncallback=?';
+	    		var flickrURL =  'https://api.flickr.com/services/rest/?format=json&method=flickr.photos.search&extras=url_k,url_q,url_o&api_key=' + options.api_key + '&user_id=' + options.user + '&per_page=' + options.total_slides + '&sort=' + sort_order + '&jsoncallback=?';
 	    		break;
 	    	case 3:		//From a Group
-	    		var flickrURL =  'https://api.flickr.com/services/rest/?format=json&method=flickr.photos.search&extras=url_k,url_q&api_key=' + options.api_key + '&group_id=' + options.group + '&per_page=' + options.total_slides + '&sort=' + sort_order + '&jsoncallback=?';
+	    		var flickrURL =  'https://api.flickr.com/services/rest/?format=json&method=flickr.photos.search&extras=url_k,url_q,url_o&api_key=' + options.api_key + '&group_id=' + options.group + '&per_page=' + options.total_slides + '&sort=' + sort_order + '&jsoncallback=?';
 	    		break;
 		case 4:		//From tags
-	    		var flickrURL =  'https://api.flickr.com/services/rest/?format=json&method=flickr.photos.search&extras=url_k,url_q&api_key=' + options.api_key + '&tags=' + options.tags + '&per_page=' + options.total_slides + '&sort=' + sort_order + '&jsoncallback=?';
+	    		var flickrURL =  'https://api.flickr.com/services/rest/?format=json&method=flickr.photos.search&extras=url_k,url_q,url_o&api_key=' + options.api_key + '&tags=' + options.tags + '&per_page=' + options.total_slides + '&sort=' + sort_order + '&jsoncallback=?';
 	    		break;
 	    }
 
@@ -164,7 +164,7 @@
     			$.each(flickrResults, function(i,item){
     			
     			    //create image urls
-    			    var photoURL = item.url_k;
+    			    var photoURL = (item.url_k) ? item.url_k : item.url_o;
     			    var thumbURL = item.url_q;
     			    var photoLink = "https://www.flickr.com/photos/" + (data.photoset ? data.photoset.owner : item.owner) + "/" + item.id + "/";
     			   	
