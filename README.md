@@ -8,5 +8,6 @@ Also considered using [Photoswipe](https://photoswipe.com) but it has no auto-pl
 Added use of the [touchswipe](https://github.com/mattbryson/TouchSwipe-Jquery-Plugin) plugin, at a minor level.  If the JS detects a touchscreen device, a touch listener is added.  Swiping right or left simply clicks the forward/backward buttons.  I could not find how to invoke the `api.nextSlide()` in supersized.  Additionally the slide transition changes to swipe for mobile, instead of fade on desktop.  
 
 I had to make some tweaks to supersized.  Upgraded to JQuery 3.x and using `.on()` events. 
-The Flickr URLs aren't built, they are requested using the Flickr API `extras=url_k,url_o` which returns the large and original image sizes.  If a `k` size image is not available, the script falls back to the original size image.  
+
+The Flickr URLs aren't concatenated any more, they are requested using the Flickr API `extras=url_k,url_o` which returns the large and original image sizes.  If a `k` size image is not available, the script falls back to the original size image.  This is to allow displaying older Flickr images for which the `k` size doesn't exist.  
 
