@@ -39,4 +39,11 @@ body { background:#111; }
 			#navigation > :hover,#nextthumb:hover, #prevthumb:hover { cursor:pointer; }
 
 	#badges { float: right;  }
+	#badges img { width: 48px; height: 48px;}
+	
+
+		/* Progress Bar
+	----------------------------*/					
+	#progress-back{ z-index:5; position:fixed; bottom:42px; left:0; height:8px; width:100%; background:url('img/progress-back.png') repeat-x; }
+		#progress-bar{ position:relative; height:8px; width:100%; background:url('img/progress-bar.png') repeat-x; }
 	
