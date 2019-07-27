@@ -205,6 +205,7 @@
 				
 				/***End load initial images***/
 				flickrLoaded = true;
+				ready();
     		}//End AJAX Callback 
     	 });
 
@@ -423,6 +424,10 @@
 			
 			$(document.documentElement).keyup(function (event) {
 			
+				if(!slideshow_interval){
+					slideshow_interval = 1000;
+				}
+
 				clearInterval(slideshow_interval);	//Stop slideshow, prevent buildup
 				
 				if ((event.keyCode == 37) || (event.keyCode == 40)) { //Left Arrow or Down Arrow
