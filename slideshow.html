@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mendhak / Photos</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background-color: #000;
+        }
+
+        /* Main slideshow container */
+        #slideshow-container {
+            position: relative;
+            width: 100%;
+            height: calc(100% - 80px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* The main image */
+        #main-image {
+            transition: opacity 0.5s ease, transform 0.3s ease;
+            transform-origin: center center;
+        }
+
+        /* Controls bar at bottom */
+        #controls-wrapper {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 80px;
+            background-color: rgba(0, 0, 0, 0.7);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+        }
+
+        /* Navigation controls */
+        #controls {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .nav-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 5px;
+            transition: opacity 0.2s;
+        }
+
+        .nav-btn:hover {
+            opacity: 0.8;
+        }
+
+        .nav-btn img {
+            width: 32px;
+            height: 32px;
+            filter: brightness(0.7);
+        }
+
+        /* Slide caption */
+        #slide-caption {
+            color: white;
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+            max-width: 400px;
+            text-align: center;
+        }
+
+        /* Badges section */
+        #badges {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        #badges a {
+            display: block;
+        }
+
+        #badges img {
+            width: 32px;
+            height: 32px;
+            filter: brightness(0.7);
+            transition: opacity 0.2s;
+        }
+
+        #badges a:hover img {
+            opacity: 0.8;
+        }
+
+        /* Touch-friendly */
+        @media (hover: none) and (pointer: coarse) {
+            .nav-btn img, #badges img {
+                width: 40px;
+                height: 40px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Main slideshow area -->
+    <div id="slideshow-container">
+        <img id="main-image" src="https://live.staticflickr.com/65535/54564532016_9aa5434dc0_k.jpg" alt="Flickr Photo">
+    </div>
+
+    <script>
+        // Fit image to screen based on orientation
+        function fitImage() {
+            const img = document.getElementById('main-image');
+            const container = document.getElementById('slideshow-container');
+            
+            if (!img || !container) return;
+            
+            const windowHeight = window.innerHeight - 80; // Subtract control bar height
+            const windowWidth = window.innerWidth;
+            
+            let width, height;
+            
+            if (img.naturalWidth > img.naturalHeight) {
+                // Landscape image - fit to width
+                const scale = windowWidth / img.naturalWidth;
+                width = windowWidth;
+                height = img.naturalHeight * scale;
+            } else {
+                // Portrait image - fit to height
+                const scale = windowHeight / img.naturalHeight;
+                height = windowHeight;
+                width = img.naturalWidth * scale;
+            }
+            
+            img.style.width = width + 'px';
+            img.style.height = height + 'px';
+        }
+        
+        // Handle resize events
+        window.addEventListener('resize', fitImage);
+        
+        // Initial fit when image loads
+        document.getElementById('main-image').addEventListener('load', fitImage);
+        
+        // Fit on page load
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', fitImage);
+        } else {
+            fitImage();
+        }
+    </script>
+
+    <!-- Control bar at bottom -->
+    <div id="controls-wrapper">
+        <div id="controls">
+            <button class="nav-btn" id="prev-slide" aria-label="Previous slide">
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Cpath d='M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z'/%3E%3C/svg%3E" alt="Previous">
+            </button>
+            <button class="nav-btn" id="pause-play" aria-label="Pause/Play">
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Cpath d='M6 19h4V5H6v14zm8-14v14h4V5h-4z'/%3E%3C/svg%3E" alt="Pause">
+            </button>
+            <button class="nav-btn" id="next-slide" aria-label="Next slide">
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Cpath d='M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z'/%3E%3C/svg%3E" alt="Next">
+            </button>
+        </div>
+
+        <div id="slide-caption"></div>
+
+        <div id="badges">
+            <a href="https://code.mendhak.com/" title="Tech and Code" aria-label="Code">
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Cpath d='M9.4 16.6L4.8 12l4.6-4.6L8 6l-6 6 6 6zm5.2 0l4.6-4.6-4.6-4.6L16 6l6 6-6 6z'/%3E%3C/svg%3E" alt="Code">
+            </a>
+            <a href="https://gpslogger.app/" title="GPSLogger for Android" aria-label="GPSLogger">
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Cpath d='M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z'/%3E%3C/svg%3E" alt="GPSLogger">
+            </a>
+            <a href="https://github.com/mendhak" title="Code Projects" aria-label="GitHub">
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Cpath d='M12 2C6.47 2 2 6.47 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.37.2 2.39.1 2.64.65.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.68-4.57 4.93.36.31.69.92.69 1.85v2.75c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12c0-5.53-4.47-10-10-10z'/%3E%3C/svg%3E" alt="GitHub">
+            </a>
+            <a href="https://www.goodreads.com/user/show/6836662-mendhak" title="Goodreads Profile" aria-label="Goodreads">
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Cpath d='M18 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 4h5l8 8v5H6V4z'/%3E%3C/svg%3E" alt="Goodreads">
+            </a>
+            <a href="https://flickr.com/photos/mendhak/" title="Flickr Photos" aria-label="Flickr">
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Cpath d='M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm0 18c-4.4 0-8-3.6-8-8s3.6-8 8-8 8 3.6 8 8-3.6 8-8 8z'/%3E%3C/svg%3E" alt="Flickr">
+            </a>
+        </div>
+    </div>
+
+</body>
+</html>
