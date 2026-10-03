@@ -1,6 +1,5 @@
 // Initialize map
 
-// Initialize map - centered on world view, zoom level 2
 const map = L.map('map').setView([20, 0], 2);
 map.attributionControl.setPrefix(false);
 
@@ -12,7 +11,7 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 19
 }).addTo(map);
 
-// Create marker cluster group
+
 const markers = L.markerClusterGroup();
 
 const locationMap = new Map();  // Track markers by location
