@@ -1,6 +1,6 @@
 // Initialize map
 
-const map = L.map('map').setView([20, 0], 2);
+const map = L.map('map').setView([55, 0], 4);
 map.attributionControl.setPrefix(false);
 
 
