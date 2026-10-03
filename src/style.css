@@ -97,32 +97,26 @@
    .flickr-popup .leaflet-popup-content {
        margin: 0;
        padding: 0;
-       max-height: 400px;
+       width: auto !important;
+       max-width: 400px !important;
    }
 
-   /* Remove the triangular pointer */
    .flickr-popup .leaflet-popup-tip {
        display: none;
    }
 
-   /* Popup container - fits image naturally */
    .popup-image-wrapper {
        position: relative;
+       width: 400px;
        max-width: 400px;
-       max-height: 350px;
    }
 
-   /* Image - fits to container, preserves aspect ratio */
    .popup-image-wrapper img {
        display: block;
-       max-width: 400px;
-       max-height: 350px;
-       width: auto;
+       width: 100%;
        height: auto;
-       object-fit: contain;
    }
 
-   /* Title overlay - at bottom of image */
    .popup-title-overlay {
        position: absolute;
        bottom: 0;
@@ -130,12 +124,8 @@
        right: 0;
        background: rgba(0, 0, 0, 0.75);
        color: white;
-       padding: 8px 12px;
-       font-size: 14px;
+       padding: 6px 10px;
+       font-size: 13px;
        font-weight: 600;
        box-sizing: border-box;
-       white-space: nowrap;
-       overflow: hidden;
-       text-overflow: ellipsis;
-       width: 100%;
    }

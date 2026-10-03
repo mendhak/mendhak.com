@@ -54,7 +54,7 @@ function hidePopup(popup) {
 // Use the L leaflet markers
 function createMarkerWithPopup(photo, lat, long) {
     const marker = L.marker([lat, long]);
-    const imageUrl = `https://farm${photo.farm}.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}_m.jpg`;
+    const imageUrl = `https://farm${photo.farm}.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}_w.jpg`;
        const popupContent = `
        <div class="popup-image-wrapper">
            <div class="image-container">
