@@ -57,13 +57,17 @@ function createMarkerWithPopup(photo, lat, long) {
     const imageUrl = `https://farm${photo.farm}.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}_m.jpg`;
        const popupContent = `
            <div class="popup-content">
-               <img src="${imageUrl}" alt="${photo.title}" style="width:100%; border-radius:4px;">
+               <a href="https://flickr.com/photos/mendhak/${photo.id}"><img src="${imageUrl}" alt="${photo.title}" style="width:100%; border-radius:4px;"></a>
                <h3 style="margin:4px 0 0 0; font-size:14px; font-weight:600;">${photo.title}</h3>
                <p style="margin:0; font-size:12px; color:#666;">Lat: ${photo.latitude}, Lng: ${photo.longitude}</p>
            </div>
        `;
 
     marker.bindPopup(popupContent);
+    marker.on('mouseover', function(){
+        marker.openPopup();
+    });
+    
     // const popup = createPopup(marker, photo);
     // marker.popup = popup;
     // marker.on('mouseover', function () { showPopup(popup, marker, map); });
@@ -71,13 +75,13 @@ function createMarkerWithPopup(photo, lat, long) {
     return marker;
 }
 
-function getRandomPhotoFromCluster(photoCluster) {
-    if (photoCluster.length === 0) {
-        return null;
-    }
-    const idx = Math.floor(Math.random() * photoCluster.length);
-    return photoCluster[idx];
-}
+// function getRandomPhotoFromCluster(photoCluster) {
+//     if (photoCluster.length === 0) {
+//         return null;
+//     }
+//     const idx = Math.floor(Math.random() * photoCluster.length);
+//     return photoCluster[idx];
+// }
 
 function clearPopups() {
     const popups = document.querySelectorAll('.photo-popup');

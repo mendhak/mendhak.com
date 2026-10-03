@@ -83,10 +83,12 @@ function addMarkersToMap(photos) {
         }
         locationMap.get(key).push(photo);
 
-        // Map marker with random photo from cluster
-        const randomPhoto = getRandomPhotoFromCluster(locationMap.get(key));
-        const marker = createMarkerWithPopup(randomPhoto, lat, lng);
+        const marker = createMarkerWithPopup(photo, lat, lng);
         markers.addLayer(marker);
+        // Map marker with random photo from cluster
+        // const randomPhoto = getRandomPhotoFromCluster(locationMap.get(key));
+        // const marker = createMarkerWithPopup(randomPhoto, lat, lng);
+        // markers.addLayer(marker);
     });
 }
 
