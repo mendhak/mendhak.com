@@ -56,14 +56,19 @@ function createMarkerWithPopup(photo, lat, long) {
     const marker = L.marker([lat, long]);
     const imageUrl = `https://farm${photo.farm}.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}_m.jpg`;
        const popupContent = `
-           <div class="popup-content">
-               <a href="https://flickr.com/photos/mendhak/${photo.id}"><img src="${imageUrl}" alt="${photo.title}" style="width:100%; border-radius:4px;"></a>
-               <h3 style="margin:4px 0 0 0; font-size:14px; font-weight:600;">${photo.title}</h3>
-               <p style="margin:0; font-size:12px; color:#666;">Lat: ${photo.latitude}, Lng: ${photo.longitude}</p>
+       <div class="popup-image-wrapper">
+           <div class="image-container">
+               <a href="https://flickr.com/photos/${photo.owner}/${photo.id}">
+                   <img src="${imageUrl}" alt="${photo.title}">
+               </a>
            </div>
-       `;
+           <div class="popup-title-overlay">${photo.title}</div>
+       </div>
+   `;
 
-    marker.bindPopup(popupContent);
+    marker.bindPopup(popupContent, {
+       className: 'flickr-popup'
+   });
     marker.on('mouseover', function(){
         marker.openPopup();
     });
