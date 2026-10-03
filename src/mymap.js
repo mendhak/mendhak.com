@@ -12,7 +12,7 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 }).addTo(map);
 
 
-const markers = L.markerClusterGroup({showCoverageOnHover: false});
+const markers = L.markerClusterGroup({ showCoverageOnHover: false });
 
 const locationMap = new Map();  // Track markers by location
 map.addLayer(markers);
@@ -99,20 +99,28 @@ function zoomToRandomCluster() {
         return;
     }
 
-    // Pick random marker
+    // Pick a random marker and fly to it
     const randomIndex = Math.floor(Math.random() * allLayers.length);
     const randomMarker = allLayers[randomIndex];
 
-    // Get marker's lat/lng
     const latlng = randomMarker.getLatLng();
 
-    // Zoom to it
-    map.flyTo(latlng, 9, {
-        duration: 2, 
-        easeLinearity: 0.25
+
+    // https://github.com/Leaflet/Leaflet.markercluster/issues/954
+    const clusterBounds = randomMarker.__parent.getBounds();
+    const zoomLevel = map.getBoundsZoom(clusterBounds);
+
+    map.flyTo(latlng, zoomLevel);
+
+    map.once('zoomend', () => {
+        //zoom to show layer also takes care of expanding clusters. It doesn't do flyto, hence this combo...
+        markers.zoomToShowLayer(randomMarker, function() { randomMarker.openPopup(); });
     });
 
-    console.log(`Zoomed to random cluster at [${latlng.lat}, ${latlng.lng}]`);
+
+    // Also works, but no flyTo. 
+    // markers.zoomToShowLayer(randomMarker, function() { randomMarker.openPopup(); });
+
 }
 
 if (document.readyState === 'loading') {
