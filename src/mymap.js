@@ -15,30 +15,27 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 // Create marker cluster group
 const markers = L.markerClusterGroup();
 
-const locationmap = new Map();  // Track markers by location
+const locationMap = new Map();  // Track markers by location
 map.addLayer(markers);
 
 
 async function loadPhotosAndMarkers() {
     try {
-        // 1. Get first page immediately for initial zoom
-        const firstPage = await getFirstPage();
+
+        const firstPage = await getPhotosPage(1);
         const totalPhotos = firstPage.photos.total;
         const totalPages = firstPage.photos.pages;
         const firstPagePhotos = firstPage.photos.photo;
 
         console.log(`Total photos: ${totalPhotos}, Total pages: ${totalPages}`);
 
-        // 2. Add first page markers
         addMarkersToMap(firstPagePhotos);
         console.log(`Added ${firstPagePhotos.length} initial markers.`);
 
-        // 3. Zoom to random cluster from first page (quick feedback)
         setTimeout(() => {
             zoomToRandomCluster();
         }, 500);
 
-        // 4. Continue loading remaining pages in background
         for (let pageNumber = 2; pageNumber <= totalPages; pageNumber++) {
             const nextPage = await getPhotosPage(pageNumber);
             addMarkersToMap(nextPage.photos.photo);
@@ -63,14 +60,13 @@ function addMarkersToMap(photos) {
 
         const key = `${lat},${lng}`;
 
-        // Add to location map
-        if (!locationmap.has(key)) {
-            locationmap.set(key, []);
+        if (!locationMap.has(key)) {
+            locationMap.set(key, []);
         }
-        locationmap.get(key).push(photo);
+        locationMap.get(key).push(photo);
 
-        // Create marker with random photo from cluster
-        const randomPhoto = getRandomPhotoFromCluster(locationmap.get(key));
+        // Map marker with random photo from cluster
+        const randomPhoto = getRandomPhotoFromCluster(locationMap.get(key));
         const marker = createMarkerWithPopup(randomPhoto, lat, lng);
         markers.addLayer(marker);
     });
@@ -90,9 +86,9 @@ function zoomToRandomCluster() {
     // Get marker's lat/lng
     const latlng = randomMarker.getLatLng();
 
-    // Zoom to that location (zoom 9 for good detail)
+    // Zoom to it
     map.flyTo(latlng, 9, {
-        duration: 2, // 2 second animation
+        duration: 2, 
         easeLinearity: 0.25
     });
 

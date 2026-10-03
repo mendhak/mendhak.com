@@ -22,44 +22,7 @@ function getPhotosPage(pageNumber) {
     });
 }
 
-async function getAllPhotos(callback) {
-       try {
-           const firstPage = await getPhotosPage(1);
-           const totalPhotos = firstPage.photos.total;
-           const totalPages = firstPage.photos.pages;
 
-           console.log(`Total photos: ${totalPhotos}, Total pages: ${totalPages}`);
-
-           allPhotos = allPhotos.concat(firstPage.photos.photo);
-
-           if(callback) {
-               callback(allPhotos.length, totalPhotos);
-           }
-
-           for (let pageNumber = 2; pageNumber <= totalPages; pageNumber++) {
-               const nextPage = await getPhotosPage(pageNumber);
-               allPhotos = allPhotos.concat(nextPage.photos.photo);
-
-               if (callback) {
-                   callback(allPhotos.length, totalPhotos);
-               }
-           }
-
-           return allPhotos;  // Return the photos array
-
-       } catch (error) {
-           console.error('Error fetching all photos:', error);
-           throw error;
-       }
-   }
-
-function getPhotos(){
-    return allPhotos;
-}
-
-async function getFirstPage(){
-    return await getPhotosPage(1);
-}
 
 // Load all pages progressively
 // Return array of photo data
