@@ -4,34 +4,37 @@
 
 const markerPopups = {};
 
-function createPopup(marker, photo) {
-    const popupId = `popup-${photo.id}`;
+// function createPopup(marker, photo) {
+//     const popupId = `popup-${photo.id}`;
 
-    const popup = document.createElement('div');
-    popup.id = popupId;
-    popup.className = 'photo-popup';
+//     const popup = document.createElement('div');
+//     popup.id = popupId;
+//     popup.className = 'photo-popup';
 
-    const imageUrl = `https://farm${photo.farm}.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}_m.jpg`;
-    popup.innerHTML = `
-           <div class="popup-content">
-               <img src="${imageUrl}" alt="${photo.title}" class="popup-image">
-               <h3 class="popup-title">${photo.title}</h3>
-               <p class="popup-location">Lat: ${photo.latitude}, Lng: ${photo.longitude}</p>
-           </div>
-       `;
+//     const imageUrl = `https://farm${photo.farm}.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}_m.jpg`;
+//     popup.innerHTML = `
+//            <div class="popup-content">
+//                <img src="${imageUrl}" alt="${photo.title}" class="popup-image">
+//                <h3 class="popup-title">${photo.title}</h3>
+//                <p class="popup-location">Lat: ${photo.latitude}, Lng: ${photo.longitude}</p>
+//            </div>
+//        `;
 
-    markerPopups[photo.id] = {
-        popup: popup,
-        marker: marker,
-        photo: photo
-    };
+//     markerPopups[photo.id] = {
+//         popup: popup,
+//         marker: marker,
+//         photo: photo
+//     };
 
-    return popup;
+//     return popup;
+// }
 
+function showPopup(popup, marker, map) {
 
-}
+    const containerPoint = map.latLngToContainerPoint(marker.getLatLng());
+    popup.style.left = (containerPoint.x + 20) + 'px';
+       popup.style.top = (containerPoint.y - 100) + 'px';
 
-function showPopup(popup) {
     popup.style.opacity = '0';
     popup.style.transition = 'opacity 0.3s ease-in';
     document.body.appendChild(popup);
@@ -51,9 +54,20 @@ function hidePopup(popup) {
 // Use the L leaflet markers
 function createMarkerWithPopup(photo, lat, long) {
     const marker = L.marker([lat, long]);
-    const popup = createPopup(marker, photo);
-    marker.on('mouseover', function () { showPopup(popup); });
-    marker.on('mouseout', function () { hidePopup(popup); });
+    const imageUrl = `https://farm${photo.farm}.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}_m.jpg`;
+       const popupContent = `
+           <div class="popup-content">
+               <img src="${imageUrl}" alt="${photo.title}" style="width:100%; border-radius:4px;">
+               <h3 style="margin:4px 0 0 0; font-size:14px; font-weight:600;">${photo.title}</h3>
+               <p style="margin:0; font-size:12px; color:#666;">Lat: ${photo.latitude}, Lng: ${photo.longitude}</p>
+           </div>
+       `;
+
+    marker.bindPopup(popupContent);
+    // const popup = createPopup(marker, photo);
+    // marker.popup = popup;
+    // marker.on('mouseover', function () { showPopup(popup, marker, map); });
+    // marker.on('mouseout', function () { hidePopup(popup); });
     return marker;
 }
 

@@ -31,9 +31,13 @@ async function loadPhotosAndMarkers() {
         addMarkersToMap(firstPagePhotos);
         console.log(`Added ${firstPagePhotos.length} initial markers.`);
 
+        // setTimeout(() => {
+        //     showAutoPopups(map);
+        // });
+
         setTimeout(() => {
             zoomToRandomCluster();
-        }, 500);
+        }, 800);
 
         for (let pageNumber = 2; pageNumber <= totalPages; pageNumber++) {
             const nextPage = await getPhotosPage(pageNumber);
@@ -47,6 +51,21 @@ async function loadPhotosAndMarkers() {
         console.error('Error loading photos:', error);
     }
 }
+
+// function showAutoPopups(map) {
+//        const allLayers = markers.getLayers();
+//        console.log(`Showing popups for ${allLayers.length} markers...`);
+
+//        let count = 0;
+//        allLayers.forEach(marker => {
+//            if (count >= 5) return;  
+
+//            if (marker.popup) {
+//                showPopup(marker.popup, marker, map);
+//                count++;
+//            }
+//        });
+//    }
 
 function addMarkersToMap(photos) {
     photos.forEach(photo => {
