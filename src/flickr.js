@@ -57,5 +57,9 @@ function getPhotos(){
     return allPhotos;
 }
 
+async function getFirstPage(){
+    return await getPhotosPage(1);
+}
+
 // Load all pages progressively
 // Return array of photo data
