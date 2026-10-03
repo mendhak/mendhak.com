@@ -12,7 +12,7 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 }).addTo(map);
 
 
-const markers = L.markerClusterGroup();
+const markers = L.markerClusterGroup({showCoverageOnHover: false});
 
 const locationMap = new Map();  // Track markers by location
 map.addLayer(markers);
