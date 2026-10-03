@@ -32,9 +32,13 @@ async function getAllPhotos(callback) {
 
            allPhotos = allPhotos.concat(firstPage.photos.photo);
 
+           if(callback) {
+               callback(allPhotos.length, totalPhotos);
+           }
+
            for (let pageNumber = 2; pageNumber <= totalPages; pageNumber++) {
                const nextPage = await getPhotosPage(pageNumber);
-               allPhotos = allPhotos.concat(nextPage);
+               allPhotos = allPhotos.concat(nextPage.photos.photo);
 
                if (callback) {
                    callback(allPhotos.length, totalPhotos);
