@@ -76,7 +76,7 @@ function addMarkersToMap(photos) {
         const lng = parseFloat(photo.longitude);
         if (isNaN(lat) || isNaN(lng)) return;
 
-        const key = `${lat},${lng}`;
+        const key = `${photo.id}`;
 
         if (!locationMap.has(key)) {
             locationMap.set(key, []);
