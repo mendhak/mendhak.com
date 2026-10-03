@@ -1,0 +1,50 @@
+   /* Map container */
+   html, body {
+       margin: 0;
+       padding: 0;
+       height: 100%;
+       width: 100%;
+   }
+
+   #map {
+       height: 100%;
+       width: 100%;
+       z-index: 1;
+   }
+
+   /* Popup styles */
+
+      .photo-popup {
+       position: fixed;
+       z-index: 1000;
+       pointer-events: none;
+   }
+
+   .popup-content {
+       background: white;
+       border-radius: 8px;
+       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+       padding: 12px;
+       max-width: 300px;
+   }
+
+   .popup-image {
+       width: 100%;
+       height: auto;
+       border-radius: 4px;
+       margin-bottom: 8px;
+   }
+
+   .popup-title {
+       margin: 0 0 4px 0;
+       font-size: 14px;
+       font-weight: 600;
+   }
+
+   .popup-location {
+       margin: 0;
+       font-size: 12px;
+       color: #666;
+   }
+   /* Fade transitions */
+   /* Cluster markers */
