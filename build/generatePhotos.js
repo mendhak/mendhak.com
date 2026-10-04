@@ -5,6 +5,11 @@ const path = require('path');
 const FLICKR_USER_ID = process.env.FLICKR_USER_ID || '69135870@N00';
 const FLICKR_API_KEY = process.env.FLICKR_API_KEY;
 
+if (!FLICKR_API_KEY) {
+    console.error('Error: FLICKR_API_KEY environment variable is required');
+    process.exit(1);
+}
+
 const OUTPUT_FILE = path.join(__dirname, '..', 'data', 'photos.json');
 
 function getPhotosPage(pageNumber) {
