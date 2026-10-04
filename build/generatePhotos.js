@@ -2,9 +2,9 @@
 const fs = require('fs');
 const path = require('path');
 
+const FLICKR_USER_ID = process.env.FLICKR_USER_ID || '69135870@N00';
+const FLICKR_API_KEY = process.env.FLICKR_API_KEY;
 
-const FLICKR_USER_ID = '69135870@N00';
-const FLICKR_API_KEY = 'a39dfdf51784c76fa3234f88bec38b0e';
 const OUTPUT_FILE = path.join(__dirname, '..', 'data', 'photos.json');
 
 function getPhotosPage(pageNumber) {
@@ -37,7 +37,7 @@ async function generateJSON() {
     const allPhotos = await getAllPhotos();
 
     const compactedPhotos = allPhotos.map(photo => ({
-        id: photo.id, 
+        id: photo.id,
         title: photo.title,
         lat: photo.latitude,
         lon: photo.longitude,
