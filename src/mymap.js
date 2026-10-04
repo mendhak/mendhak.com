@@ -35,15 +35,17 @@ async function loadPhotosAndMarkers() {
         //     showAutoPopups(map);
         // });
 
-        setTimeout(() => {
-            zoomToRandomCluster();
-        }, 800);
 
         for (let pageNumber = 2; pageNumber <= totalPages; pageNumber++) {
             const nextPage = await getPhotosPage(pageNumber);
             addMarkersToMap(nextPage.photos.photo);
 
         }
+
+        setTimeout(() => {
+            zoomToRandomCluster();
+        }, 800);
+
 
         console.log(`Added all markers. Total markers: ${markers.getLayers().length}`);
 
@@ -114,7 +116,7 @@ function zoomToRandomCluster() {
 
     map.once('zoomend', () => {
         //zoom to show layer also takes care of expanding clusters. It doesn't do flyto, hence this combo...
-        markers.zoomToShowLayer(randomMarker, function() { randomMarker.openPopup(); });
+        markers.zoomToShowLayer(randomMarker, function () { randomMarker.openPopup(); });
     });
 
 
