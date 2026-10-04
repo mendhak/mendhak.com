@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-10-04T15:06:49.790Z",
-  "totalPhotos": 1090,
+  "generatedAt": "2026-10-04T15:31:05.247Z",
+  "totalPhotos": 1103,
   "owner": "69135870@N00",
   "photos": [
     {
@@ -9677,6 +9677,123 @@
       "farm": 4,
       "server": "3031",
       "secret": "bee8a8d117"
+    },
+    {
+      "id": "2487733068",
+      "title": "Former oil rig",
+      "lat": "50.712737",
+      "lon": "-1.335482",
+      "farm": 4,
+      "server": "3136",
+      "secret": "1af8ee9ea6"
+    },
+    {
+      "id": "2471809732",
+      "title": "Serene Lake",
+      "lat": "-45.006685",
+      "lon": "168.442211",
+      "farm": 4,
+      "server": "3144",
+      "secret": "af9f18e8b9"
+    },
+    {
+      "id": "2470981313",
+      "title": "Frayed Grass",
+      "lat": "-43.633341",
+      "lon": "172.626800",
+      "farm": 3,
+      "server": "2113",
+      "secret": "d1f1b5b093"
+    },
+    {
+      "id": "2471803816",
+      "title": "View over rocks",
+      "lat": "-43.627626",
+      "lon": "172.628420",
+      "farm": 4,
+      "server": "3203",
+      "secret": "2c3bf36c0b"
+    },
+    {
+      "id": "2470802991",
+      "title": "Caterpillar... like",
+      "lat": "-43.600315",
+      "lon": "172.661476",
+      "farm": 3,
+      "server": "2112",
+      "secret": "2e8b051c19"
+    },
+    {
+      "id": "2471623058",
+      "title": "Juveniles",
+      "lat": "-43.790799",
+      "lon": "172.940597",
+      "farm": 3,
+      "server": "2088",
+      "secret": "0e96832244"
+    },
+    {
+      "id": "2470594437",
+      "title": "Bluefinch Bottlenecked Bumblebee Barber",
+      "lat": "-43.530854",
+      "lon": "172.620502",
+      "farm": 4,
+      "server": "3005",
+      "secret": "4a2539a7eb"
+    },
+    {
+      "id": "2470462859",
+      "title": "Weeping Willow",
+      "lat": "-43.522889",
+      "lon": "172.608572",
+      "farm": 4,
+      "server": "3290",
+      "secret": "9af5f9b835"
+    },
+    {
+      "id": "2471061658",
+      "title": "Sheepish",
+      "lat": "-43.668740",
+      "lon": "172.683963",
+      "farm": 4,
+      "server": "3094",
+      "secret": "feca52f7b3"
+    },
+    {
+      "id": "2470915328",
+      "title": "Hilltop path",
+      "lat": "-43.606173",
+      "lon": "172.647914",
+      "farm": 3,
+      "server": "2392",
+      "secret": "5442b7bae7"
+    },
+    {
+      "id": "2469813975",
+      "title": "Cemetary",
+      "lat": "-43.543812",
+      "lon": "172.622627",
+      "farm": 3,
+      "server": "2275",
+      "secret": "26a32f18e1"
+    },
+    {
+      "id": "2469764023",
+      "title": "Knoll, River, Grass",
+      "lat": "-43.522889",
+      "lon": "172.608572",
+      "farm": 4,
+      "server": "3264",
+      "secret": "b5189a1759"
+    },
+    {
+      "id": "2469591707",
+      "title": "The Bridge",
+      "lat": "-43.522795",
+      "lon": "172.608110",
+      "farm": 4,
+      "server": "3288",
+      "secret": "eb05265834"
     },
     {
       "id": "2469291538",
