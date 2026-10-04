@@ -1,0 +1,23 @@
+name: Generate Photos JSON
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - run: node build/generatePhotos.js
+        env:
+          FLICKR_API_KEY: ${{ secrets.FLICKR_API_KEY }}
+          FLICKR_USER_ID: ${{ secrets.FLICKR_USER_ID }}
+      - run: |
+          git config user.name "mendhak"
+          git config user.email "mendhak@users.noreply.github.com"
+          git add data/photos.json
+          git commit -m "Update photos.json" || exit 0
+          git push
