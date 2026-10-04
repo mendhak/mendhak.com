@@ -28,6 +28,9 @@ jobs:
 
   deploy:
     runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     needs: regenerate
     # Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
     permissions:
