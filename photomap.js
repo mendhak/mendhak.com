@@ -1,3 +1,5 @@
+import photos from "./data/photos.json" with { type: "json" };
+
 // Initialize map
 // Add tile layer
 // Create marker cluster group
@@ -23,22 +25,10 @@ map.addLayer(markers);
 async function loadPhotosAndMarkers() {
     try {
 
-        const firstPage = await getPhotosPage(1);
-        const totalPhotos = firstPage.photos.total;
-        const totalPages = firstPage.photos.pages;
-        const firstPagePhotos = firstPage.photos.photo;
+        const photosArray = photos.photos;
+        console.log(`Total photos in JSON: ${photos.totalPhotos}`);
 
-        console.log(`Total photos: ${totalPhotos}, Total pages: ${totalPages}`);
-
-        addMarkersToMap(firstPagePhotos);
-        console.log(`Added ${firstPagePhotos.length} initial markers.`);
-
-
-        for (let pageNumber = 2; pageNumber <= totalPages; pageNumber++) {
-            const nextPage = await getPhotosPage(pageNumber);
-            addMarkersToMap(nextPage.photos.photo);
-
-        }
+        addMarkersToMap(photosArray);
 
         setTimeout(() => {
             zoomToRandomMarker();
@@ -57,13 +47,13 @@ async function loadPhotosAndMarkers() {
 function addMarkersToMap(photos) {
     photos.forEach(photo => {
         // Skip invalid coordinates
-        if (!photo.latitude || !photo.longitude) return;
+        if (!photo.lat || !photo.lon) return;
 
-        const lat = parseFloat(photo.latitude);
-        const lng = parseFloat(photo.longitude);
-        if (isNaN(lat) || isNaN(lng)) return;
+        const lat = parseFloat(photo.lat);
+        const long = parseFloat(photo.lon);
+        if (isNaN(lat) || isNaN(long)) return;
 
-        const marker = createMarkerWithPopup(photo, lat, lng);
+        const marker = createMarkerWithPopup(photo, lat, long);
         markers.addLayer(marker);
 
     });
@@ -80,7 +70,7 @@ function zoomToRandomMarker() {
     const randomIndex = Math.floor(Math.random() * allLayers.length);
     const randomMarker = allLayers[randomIndex];
 
-    const latlng = randomMarker.getLatLng();
+    const latLong = randomMarker.getLatLng();
 
 
     // https://github.com/Leaflet/Leaflet.markercluster/issues/954
@@ -88,7 +78,7 @@ function zoomToRandomMarker() {
     const clusterBounds = randomMarker.__parent.getBounds();
     const zoomLevel = map.getBoundsZoom(clusterBounds);
 
-    map.flyTo(latlng, zoomLevel);
+    map.flyTo(latLong, zoomLevel);
 
     map.once('zoomend', () => {
         //zoom to show layer also takes care of expanding clusters. It doesn't do flyto, hence this weird combo...
