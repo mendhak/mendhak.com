@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-10-04T15:46:09.706Z",
-  "totalPhotos": 1103,
+  "generatedAt": "2026-10-04T16:27:28.109Z",
+  "totalPhotos": 1100,
   "owner": "69135870@N00",
   "photos": [
     {
@@ -3199,15 +3199,6 @@
       "secret": "2e58333b68"
     },
     {
-      "id": "54440503984",
-      "title": "... bonjour",
-      "lat": "0.000000",
-      "lon": "0.000000",
-      "farm": 66,
-      "server": "65535",
-      "secret": "400122fe3d"
-    },
-    {
       "id": "54436978478",
       "title": "Why did the bicycle fall over?",
       "lat": "36.261944",
@@ -5028,8 +5019,8 @@
     {
       "id": "15793921001",
       "title": "Same view, different day",
-      "lat": "47.150502",
-      "lon": "8.845366",
+      "lat": "46.494256",
+      "lon": "9.840134",
       "farm": 8,
       "server": "7516",
       "secret": "6447823e8c"
@@ -5037,8 +5028,8 @@
     {
       "id": "15795841995",
       "title": "Colder St. Moritz Lake",
-      "lat": "47.150502",
-      "lon": "8.845366",
+      "lat": "46.494034",
+      "lon": "9.838600",
       "farm": 8,
       "server": "7548",
       "secret": "12afe9475b"
@@ -5305,24 +5296,6 @@
       "secret": "77a80bf5f1"
     },
     {
-      "id": "8668124155",
-      "title": "[Cinemagraph] Life Of Pi",
-      "lat": "8.928487",
-      "lon": "-130.078125",
-      "farm": 9,
-      "server": "8393",
-      "secret": "452cf6a0e4"
-    },
-    {
-      "id": "8656172880",
-      "title": "Coder Coding",
-      "lat": "-18.910772",
-      "lon": "47.523980",
-      "farm": 9,
-      "server": "8113",
-      "secret": "f85d8cc426"
-    },
-    {
       "id": "8654672328",
       "title": "The town of Bath as seen from Bath Abbey",
       "lat": "51.385028",
@@ -5465,15 +5438,6 @@
       "farm": 9,
       "server": "8204",
       "secret": "b4a7c040c5"
-    },
-    {
-      "id": "8151974562",
-      "title": "(Cinemagraph) Parking lot by the highway (Moneyball 2011)",
-      "lat": "-15.331538",
-      "lon": "27.903556",
-      "farm": 9,
-      "server": "8061",
-      "secret": "6c3170526c"
     },
     {
       "id": "8142882549",
@@ -7454,15 +7418,6 @@
       "farm": 5,
       "server": "4059",
       "secret": "9b336afebb"
-    },
-    {
-      "id": "4155606781",
-      "title": "Shower Curtains",
-      "lat": "0.000000",
-      "lon": "0.000000",
-      "farm": 3,
-      "server": "2494",
-      "secret": "0afd93181e"
     },
     {
       "id": "4114167571",
@@ -9677,6 +9632,24 @@
       "farm": 4,
       "server": "3031",
       "secret": "bee8a8d117"
+    },
+    {
+      "id": "2664924232",
+      "title": "Baguio at Night",
+      "lat": "16.416532",
+      "lon": "120.591816",
+      "farm": 4,
+      "server": "3193",
+      "secret": "d8642fb6a7"
+    },
+    {
+      "id": "2487067163",
+      "title": "Dusk",
+      "lat": "50.683407",
+      "lon": "-1.388740",
+      "farm": 3,
+      "server": "2087",
+      "secret": "d62e456bfc"
     },
     {
       "id": "2487733068",
