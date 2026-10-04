@@ -1,4 +1,7 @@
 // Initialize map
+// Add tile layer
+// Create marker cluster group
+// Add cluster group to map
 
 const map = L.map('map').setView([55, 0], 4);
 map.attributionControl.setPrefix(false);
@@ -14,7 +17,6 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 
 const markers = L.markerClusterGroup({ showCoverageOnHover: false });
 
-const locationMap = new Map();  // Track markers by location
 map.addLayer(markers);
 
 
@@ -30,10 +32,6 @@ async function loadPhotosAndMarkers() {
 
         addMarkersToMap(firstPagePhotos);
         console.log(`Added ${firstPagePhotos.length} initial markers.`);
-
-        // setTimeout(() => {
-        //     showAutoPopups(map);
-        // });
 
 
         for (let pageNumber = 2; pageNumber <= totalPages; pageNumber++) {
@@ -54,20 +52,7 @@ async function loadPhotosAndMarkers() {
     }
 }
 
-// function showAutoPopups(map) {
-//        const allLayers = markers.getLayers();
-//        console.log(`Showing popups for ${allLayers.length} markers...`);
 
-//        let count = 0;
-//        allLayers.forEach(marker => {
-//            if (count >= 5) return;  
-
-//            if (marker.popup) {
-//                showPopup(marker.popup, marker, map);
-//                count++;
-//            }
-//        });
-//    }
 
 function addMarkersToMap(photos) {
     photos.forEach(photo => {
@@ -78,19 +63,9 @@ function addMarkersToMap(photos) {
         const lng = parseFloat(photo.longitude);
         if (isNaN(lat) || isNaN(lng)) return;
 
-        const key = `${photo.id}`;
-
-        if (!locationMap.has(key)) {
-            locationMap.set(key, []);
-        }
-        locationMap.get(key).push(photo);
-
         const marker = createMarkerWithPopup(photo, lat, lng);
         markers.addLayer(marker);
-        // Map marker with random photo from cluster
-        // const randomPhoto = getRandomPhotoFromCluster(locationMap.get(key));
-        // const marker = createMarkerWithPopup(randomPhoto, lat, lng);
-        // markers.addLayer(marker);
+
     });
 }
 
@@ -109,18 +84,19 @@ function zoomToRandomCluster() {
 
 
     // https://github.com/Leaflet/Leaflet.markercluster/issues/954
+    // Needed because there isn't a way to directly get to the cluster for a marker, the method only gives us visible cluster, not nested one. 
     const clusterBounds = randomMarker.__parent.getBounds();
     const zoomLevel = map.getBoundsZoom(clusterBounds);
 
     map.flyTo(latlng, zoomLevel);
 
     map.once('zoomend', () => {
-        //zoom to show layer also takes care of expanding clusters. It doesn't do flyto, hence this combo...
+        //zoom to show layer also takes care of expanding clusters. It doesn't do flyto, hence this weird combo...
         markers.zoomToShowLayer(randomMarker, function () { randomMarker.openPopup(); });
     });
 
 
-    // Also works, but no flyTo. 
+    // Also works, but no flyTo. Keeping this just in case .__parent stops working in future. 
     // markers.zoomToShowLayer(randomMarker, function() { randomMarker.openPopup(); });
 
 }
@@ -131,6 +107,3 @@ if (document.readyState === 'loading') {
     loadPhotosAndMarkers();
 }
 
-// Add tile layer
-// Create marker cluster group
-// Add cluster group to map

@@ -1,5 +1,5 @@
-   /* Map container */
-   html, body {
+   html,
+   body {
        margin: 0;
        padding: 0;
        height: 100%;
@@ -12,82 +12,8 @@
        z-index: 1;
    }
 
-   /* Popup styles */
-/* 
-      .photo-popup {
-       position: fixed;
-       z-index: 1000;
-       pointer-events: none;
-   }
 
-   .popup-content {
-       background: white;
-       border-radius: 8px;
-       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-       padding: 12px;
-       max-width: 300px;
-   }
-
-   .popup-image {
-       width: 100%;
-       height: auto;
-       border-radius: 4px;
-       margin-bottom: 8px;
-   }
-
-   .popup-title {
-       margin: 0 0 4px 0;
-       font-size: 14px;
-       font-weight: 600;
-   }
-
-   .popup-location {
-       margin: 0;
-       font-size: 12px;
-       color: #666;
-   } */
-   /* Fade transitions */
-   /* Cluster markers */
-
-   /* .flickr-popup .leaflet-popup-content-wrapper {
-       background: transparent;
-       border-radius: 0;
-       box-shadow: none;
-   }
-
-   .flickr-popup .leaflet-popup-content {
-       margin: 0;
-       padding: 0;
-   }
-
-   .popup-image-wrapper {
-       position: relative;
-       width: 100%;
-       height: 250px;
-       overflow: hidden;
-   }
-
-   .popup-image-wrapper img {
-       width: 100%;
-       height: 100%;
-       object-fit: cover;
-   }
-
-   .popup-title-overlay {
-       position: absolute;
-       bottom: 0;
-       left: 0;
-       right: 0;
-       background: rgba(0, 0, 0, 0.7);
-       color: white;
-       padding: 12px;
-       font-size: 16px;
-       font-weight: 600;
-   }
-
-    */
-
-    .flickr-popup .leaflet-popup-content-wrapper {
+   .flickr-popup .leaflet-popup-content-wrapper {
        background: transparent;
        border-radius: 0;
        box-shadow: none;

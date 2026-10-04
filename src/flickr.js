@@ -1,9 +1,7 @@
-// Fetch photos 
-
+// TODO - I think this could be statically generated via build step
 const FLICKR_USER_ID = '69135870@N00';  // From your API response
 const FLICKR_API_KEY = 'a39dfdf51784c76fa3234f88bec38b0e';  // Replace with your actual key
 
-let allPhotos = [];
 
 function getPhotosPage(pageNumber) {
     return new Promise((resolve, reject) => {
@@ -22,7 +20,3 @@ function getPhotosPage(pageNumber) {
     });
 }
 
-
-
-// Load all pages progressively
-// Return array of photo data
