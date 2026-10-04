@@ -101,12 +101,6 @@ function zoomToRandomMarker() {
 
 }
 
-if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', loadPhotosAndMarkers);
-} else {
-    loadPhotosAndMarkers();
-}
-
 
 // Use the L leaflet markers
 function createMarkerWithPopup(photo, lat, long) {
@@ -131,4 +125,12 @@ function createMarkerWithPopup(photo, lat, long) {
     });
 
     return marker;
+}
+
+
+
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', loadPhotosAndMarkers);
+} else {
+    loadPhotosAndMarkers();
 }
