@@ -7,6 +7,7 @@ const owner = photos.owner;
 
 const map = L.map('map').setView([55, 0], 4);
 map.attributionControl.setPrefix(false);
+map.removeControl(map.zoomControl);
 
 
 
