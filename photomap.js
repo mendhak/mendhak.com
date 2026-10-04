@@ -66,7 +66,10 @@ function addMarkersToMap(photos) {
     });
 }
 
-function zoomToPhotoById(photoId) {
+function zoomToPhotoById(photoId, updateHash=false) {
+    if (updateHash){
+        history.replaceState(null, null, `#${photoId}`);
+    }
     const allLayers = markers.getLayers();
     const targetMarker = allLayers.find(m => m.options.photoId === photoId);
     if (targetMarker) {
@@ -86,7 +89,7 @@ function zoomToPhotoById(photoId) {
     }
 }
 
-function zoomToRandomMarker() {
+function zoomToRandomMarker(updateHash = false) {
     const allLayers = markers.getLayers();
     if (allLayers.length === 0) {
         console.log('No markers to zoom to.');
@@ -97,14 +100,14 @@ function zoomToRandomMarker() {
     const randomIndex = Math.floor(Math.random() * allLayers.length);
     const randomMarker = allLayers[randomIndex];
 
-    zoomToPhotoById(randomMarker.options.photoId);
+    zoomToPhotoById(randomMarker.options.photoId, updateHash);
 
 }
 
 // Use the L leaflet markers
 function createMarkerWithPopup(photo, lat, long) {
     const marker = L.marker([lat, long], { photoId: photo.id });
-    const imageUrl = `https://farm${photo.farm}.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}_b.jpg`;
+    const imageUrl = `https://farm${photo.farm}.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}_c.jpg`;
     const popupContent = `
        <div class="popup-image-wrapper">
            <div class="image-container">
@@ -187,7 +190,8 @@ document.addEventListener('click', (e) => {
     if (e.target.classList.contains('popup-dice')) {
         e.stopPropagation();
         onUserInteraction();
-        zoomToRandomMarker();
+        // Because it's a deliberate user action we do want the hash URL to change. 
+        zoomToRandomMarker(true);
     }
 });
 
