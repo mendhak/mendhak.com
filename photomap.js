@@ -30,8 +30,14 @@ async function loadPhotosAndMarkers() {
 
         addMarkersToMap(photosArray);
 
+        const photoId = window.location.hash.substring(1);
+
         setTimeout(() => {
-            zoomToRandomMarker();
+            if (photoId) {
+                zoomToPhotoById(photoId);
+            } else {
+                zoomToRandomMarker();
+            }
         }, 800);
 
 
@@ -59,6 +65,26 @@ function addMarkersToMap(photos) {
     });
 }
 
+function zoomToPhotoById(photoId) {
+    const allLayers = markers.getLayers();
+    const targetMarker = allLayers.find(m => m.options.photoId === photoId);
+    if (targetMarker) {
+
+        // https://github.com/Leaflet/Leaflet.markercluster/issues/954
+        // Needed because there isn't a way to directly get to the cluster for a marker, the method only gives us visible cluster, not nested one. 
+        const clusterBounds = targetMarker.__parent.getBounds();
+        const zoomLevel = map.getBoundsZoom(clusterBounds);
+        const latLong = targetMarker.getLatLng();
+        map.flyTo(latLong, zoomLevel);
+        map.once('zoomend', () => {
+            markers.zoomToShowLayer(targetMarker, function () { targetMarker.openPopup(); });
+        });
+
+        // This also works, but no flyTo. Keeping this just in case .__parent stops working in future. 
+        // markers.zoomToShowLayer(randomMarker, function() { randomMarker.openPopup(); });
+    }
+}
+
 function zoomToRandomMarker() {
     const allLayers = markers.getLayers();
     if (allLayers.length === 0) {
@@ -70,31 +96,14 @@ function zoomToRandomMarker() {
     const randomIndex = Math.floor(Math.random() * allLayers.length);
     const randomMarker = allLayers[randomIndex];
 
-    const latLong = randomMarker.getLatLng();
-
-
-    // https://github.com/Leaflet/Leaflet.markercluster/issues/954
-    // Needed because there isn't a way to directly get to the cluster for a marker, the method only gives us visible cluster, not nested one. 
-    const clusterBounds = randomMarker.__parent.getBounds();
-    const zoomLevel = map.getBoundsZoom(clusterBounds);
-
-    map.flyTo(latLong, zoomLevel);
-
-    map.once('zoomend', () => {
-        //zoom to show layer also takes care of expanding clusters. It doesn't do flyto, hence this weird combo...
-        markers.zoomToShowLayer(randomMarker, function () { randomMarker.openPopup(); });
-    });
-
-
-    // Also works, but no flyTo. Keeping this just in case .__parent stops working in future. 
-    // markers.zoomToShowLayer(randomMarker, function() { randomMarker.openPopup(); });
+    zoomToPhotoById(randomMarker.options.photoId);
 
 }
 
 
 // Use the L leaflet markers
 function createMarkerWithPopup(photo, lat, long) {
-    const marker = L.marker([lat, long]);
+    const marker = L.marker([lat, long], { photoId: photo.id });
     const imageUrl = `https://farm${photo.farm}.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}_w.jpg`;
     const popupContent = `
        <div class="popup-image-wrapper">
@@ -110,8 +119,15 @@ function createMarkerWithPopup(photo, lat, long) {
     marker.bindPopup(popupContent, {
         className: 'flickr-popup'
     });
+    
     marker.on('mouseover', function () {
-        marker.openPopup();
+        history.replaceState(null, null, `#${photo.id}`);
+        this.openPopup();
+    });
+    
+    marker.on('click', function () {
+        history.replaceState(null, null, `#${photo.id}`);
+        this.openPopup();
     });
 
     return marker;
@@ -124,3 +140,11 @@ if (document.readyState === 'loading') {
 } else {
     loadPhotosAndMarkers();
 }
+
+// If a #9999999 photo ID is in the URL hash, triggers zoom to that photo. 
+window.addEventListener('hashchange', function () {
+    const photoId = window.location.hash.substring(1);
+    if (photoId) {
+        zoomToPhotoById(photoId);
+    }
+});
