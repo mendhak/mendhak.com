@@ -112,7 +112,10 @@ function createMarkerWithPopup(photo, lat, long) {
                    <img src="${imageUrl}" alt="${photo.title}">
                </a>
            </div>
-           <div class="popup-title-overlay">${photo.title}</div>
+           <div class="popup-title-overlay">
+              <span class="popup-title-text">${photo.title}</span>
+              <span class="popup-dice" title="Go to random photo">🎲</span>
+          </div>
        </div>
    `;
 
@@ -159,6 +162,7 @@ function startAutoZoomTour() {
 }
 
 
+// Page load - just load map and markers
 if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', loadPhotosAndMarkers);
 } else {
@@ -175,6 +179,15 @@ window.addEventListener('hashchange', function () {
     const photoId = window.location.hash.substring(1);
     if (photoId) {
         zoomToPhotoById(photoId);
+    }
+});
+
+// Dice click handling. 
+document.addEventListener('click', (e) => {
+    if (e.target.classList.contains('popup-dice')) {
+        e.stopPropagation();
+        onUserInteraction();
+        zoomToRandomMarker();
     }
 });
 
