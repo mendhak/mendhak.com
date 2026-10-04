@@ -104,7 +104,7 @@ function zoomToRandomMarker() {
 // Use the L leaflet markers
 function createMarkerWithPopup(photo, lat, long) {
     const marker = L.marker([lat, long], { photoId: photo.id });
-    const imageUrl = `https://farm${photo.farm}.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}_w.jpg`;
+    const imageUrl = `https://farm${photo.farm}.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}_b.jpg`;
     const popupContent = `
        <div class="popup-image-wrapper">
            <div class="image-container">

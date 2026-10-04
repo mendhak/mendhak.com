@@ -24,7 +24,7 @@
        margin: 0;
        padding: 0;
        width: auto !important;
-       max-width: 400px !important;
+       max-width: 90vw !important;
    }
 
    .flickr-popup .leaflet-popup-tip {
@@ -33,8 +33,8 @@
 
    .popup-image-wrapper {
        position: relative;
-       width: 400px;
-       max-width: 400px;
+       width: 800px;
+       max-width: 90vw;
    }
 
    .popup-image-wrapper img {
