@@ -139,6 +139,7 @@ let autoZoomInterval;
 function onUserInteraction() {
     clearInterval(autoZoomInterval);
     autoZoomInterval = null;
+    console.log("User interaction detected, stopping auto zoom tour.");
 }
 
 function startAutoZoomTour() {
@@ -168,7 +169,9 @@ if (document.readyState === 'loading') {
 map.on('click dragend', onUserInteraction);
 
 // If a #9999999 photo ID is in the URL hash, triggers zoom to that photo. 
+// Doesn't trigger if URL is changed via pushState/replaceState, phew. 
 window.addEventListener('hashchange', function () {
+    onUserInteraction();
     const photoId = window.location.hash.substring(1);
     if (photoId) {
         zoomToPhotoById(photoId);
