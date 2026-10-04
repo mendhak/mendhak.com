@@ -54,6 +54,7 @@ async function generateJSON() {
     const output = {
         generatedAt: new Date().toISOString(),
         totalPhotos: compactedPhotos.length,
+        owner: FLICKR_USER_ID,
         photos: compactedPhotos
     };
 

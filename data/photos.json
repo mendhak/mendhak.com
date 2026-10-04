@@ -1,6 +1,7 @@
 {
-  "generatedAt": "2026-10-04T08:49:37.614Z",
-  "totalPhotos": 1079,
+  "generatedAt": "2026-10-04T09:02:00.509Z",
+  "totalPhotos": 1078,
+  "owner": "69135870@N00",
   "photos": [
     {
       "id": "55568111344",
@@ -8110,15 +8111,6 @@
       "farm": 4,
       "server": "3543",
       "secret": "3158825d6e"
-    },
-    {
-      "id": "3804804736",
-      "title": "My Research Results",
-      "lat": "64.923541",
-      "lon": "-19.885253",
-      "farm": 3,
-      "server": "2448",
-      "secret": "360d59888d"
     },
     {
       "id": "3781992816",

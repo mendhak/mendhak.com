@@ -1,5 +1,5 @@
 import photos from "./data/photos.json" with { type: "json" };
-
+const owner = photos.owner;
 // Initialize map
 // Add tile layer
 // Create marker cluster group
@@ -99,7 +99,7 @@ function createMarkerWithPopup(photo, lat, long) {
     const popupContent = `
        <div class="popup-image-wrapper">
            <div class="image-container">
-               <a href="https://flickr.com/photos/${photo.owner}/${photo.id}">
+               <a href="https://flickr.com/photos/${owner}/${photo.id}">
                    <img src="${imageUrl}" alt="${photo.title}">
                </a>
            </div>
