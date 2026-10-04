@@ -38,9 +38,9 @@ async function loadPhotosAndMarkers() {
                 zoomToPhotoById(photoId);
             } else {
                 zoomToRandomMarker();
+                startAutoZoomTour();
             }
         }, 800);
-
 
         console.log(`Added all markers. Total markers: ${markers.getLayers().length}`);
 
@@ -101,7 +101,6 @@ function zoomToRandomMarker() {
 
 }
 
-
 // Use the L leaflet markers
 function createMarkerWithPopup(photo, lat, long) {
     const marker = L.marker([lat, long], { photoId: photo.id });
@@ -120,20 +119,43 @@ function createMarkerWithPopup(photo, lat, long) {
     marker.bindPopup(popupContent, {
         className: 'flickr-popup'
     });
-    
+
     marker.on('mouseover', function () {
         history.replaceState(null, null, `#${photo.id}`);
         this.openPopup();
     });
-    
+
     marker.on('click', function () {
         history.replaceState(null, null, `#${photo.id}`);
         this.openPopup();
+        onUserInteraction();
     });
 
     return marker;
 }
 
+let autoZoomInterval;
+
+function onUserInteraction() {
+    clearInterval(autoZoomInterval);
+    autoZoomInterval = null;
+}
+
+function startAutoZoomTour() {
+    if (autoZoomInterval) {
+        clearInterval(autoZoomInterval);
+        autoZoomInterval = null;
+    }
+
+    if (window.location.hash.length > 0) {
+        console.log("Auto zoom tour paused due to URL hash.");
+    }
+
+    autoZoomInterval = setInterval(function () {
+        zoomToRandomMarker();
+    }, 30000);
+
+}
 
 
 if (document.readyState === 'loading') {
@@ -142,10 +164,19 @@ if (document.readyState === 'loading') {
     loadPhotosAndMarkers();
 }
 
+// If there's user interaction, stop the tour.
+map.on('click dragend', onUserInteraction);
+
 // If a #9999999 photo ID is in the URL hash, triggers zoom to that photo. 
 window.addEventListener('hashchange', function () {
     const photoId = window.location.hash.substring(1);
     if (photoId) {
         zoomToPhotoById(photoId);
     }
+});
+
+// Cleanup
+window.addEventListener('beforeunload', () => {
+    clearInterval(autoZoomInterval);
+    autoZoomInterval = null;
 });
