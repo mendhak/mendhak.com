@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-10-05T18:26:51.887Z",
-  "totalPhotos": 1154,
+  "generatedAt": "2026-10-05T18:44:44.582Z",
+  "totalPhotos": 1153,
   "owner": "69135870@N00",
   "photos": [
     {
@@ -5483,15 +5483,6 @@
       "farm": 9,
       "server": "8225",
       "secret": "42d80e6040"
-    },
-    {
-      "id": "8444742779",
-      "title": "[Minecraft] Window Seat",
-      "lat": "-54.433330",
-      "lon": "3.400000",
-      "farm": 9,
-      "server": "8493",
-      "secret": "8c7d858982"
     },
     {
       "id": "8222500520",
