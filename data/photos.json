@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-10-05T17:23:26.437Z",
-  "totalPhotos": 1156,
+  "generatedAt": "2026-10-05T18:26:51.887Z",
+  "totalPhotos": 1154,
   "owner": "69135870@N00",
   "photos": [
     {
@@ -10336,15 +10336,6 @@
       "secret": "95b0821e52"
     },
     {
-      "id": "2180614491",
-      "title": "Himalayan lake",
-      "lat": "30.940954",
-      "lon": "85.925445",
-      "farm": 3,
-      "server": "2046",
-      "secret": "7fa134f772"
-    },
-    {
       "id": "2131521556",
       "title": "Old Friends",
       "lat": "51.518397",
@@ -10379,15 +10370,6 @@
       "farm": 3,
       "server": "2101",
       "secret": "b0d0332d55"
-    },
-    {
-      "id": "2117622450",
-      "title": "Yin Yang kittens",
-      "lat": "29.654418",
-      "lon": "91.138329",
-      "farm": 3,
-      "server": "2282",
-      "secret": "42ecb79231"
     },
     {
       "id": "2117622176",
