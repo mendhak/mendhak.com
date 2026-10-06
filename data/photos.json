@@ -1,8 +1,17 @@
 {
-  "generatedAt": "2026-10-05T18:44:44.582Z",
-  "totalPhotos": 1153,
+  "generatedAt": "2026-10-06T12:10:18.782Z",
+  "totalPhotos": 1154,
   "owner": "69135870@N00",
   "photos": [
+    {
+      "id": "55572300046",
+      "title": "Start of the Llanberis Pass",
+      "lat": "53.080200",
+      "lon": "-4.018862",
+      "farm": 66,
+      "server": "65535",
+      "secret": "d8f5b936de"
+    },
     {
       "id": "55570483525",
       "title": "The view from Y Garn",
