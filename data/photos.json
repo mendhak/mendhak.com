@@ -1,8 +1,17 @@
 {
-  "generatedAt": "2026-10-06T12:10:18.782Z",
-  "totalPhotos": 1154,
+  "generatedAt": "2026-10-07T07:19:24.227Z",
+  "totalPhotos": 1155,
   "owner": "69135870@N00",
   "photos": [
+    {
+      "id": "55574370738",
+      "title": "Seceda wide",
+      "lat": "46.599441",
+      "lon": "11.728991",
+      "farm": 66,
+      "server": "65535",
+      "secret": "8976192d8b"
+    },
     {
       "id": "55572300046",
       "title": "Start of the Llanberis Pass",
