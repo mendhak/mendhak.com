@@ -1,8 +1,17 @@
 {
-  "generatedAt": "2026-10-07T11:55:56.716Z",
-  "totalPhotos": 1155,
+  "generatedAt": "2026-10-08T06:20:12.603Z",
+  "totalPhotos": 1156,
   "owner": "69135870@N00",
   "photos": [
+    {
+      "id": "55576633120",
+      "title": "Cwm Idwal",
+      "lat": "53.114808",
+      "lon": "-4.029109",
+      "farm": 66,
+      "server": "65535",
+      "secret": "e14a0f6e1b"
+    },
     {
       "id": "55574370738",
       "title": "Seceda wide",
