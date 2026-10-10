@@ -1,8 +1,17 @@
 {
-  "generatedAt": "2026-10-09T12:02:09.993Z",
-  "totalPhotos": 1157,
+  "generatedAt": "2026-10-10T11:18:33.532Z",
+  "totalPhotos": 1158,
   "owner": "69135870@N00",
   "photos": [
+    {
+      "id": "55578958412",
+      "title": "Lonely Fence",
+      "lat": "50.667474",
+      "lon": "-1.484714",
+      "farm": 66,
+      "server": "65535",
+      "secret": "0ff416ff73"
+    },
     {
       "id": "55578125466",
       "title": "Contemplating",
