@@ -1,8 +1,17 @@
 {
-  "generatedAt": "2026-10-12T13:24:48.887Z",
-  "totalPhotos": 1160,
+  "generatedAt": "2026-10-13T12:53:07.136Z",
+  "totalPhotos": 1161,
   "owner": "69135870@N00",
   "photos": [
+    {
+      "id": "55586419033",
+      "title": "petworth path",
+      "lat": "51.001269",
+      "lon": "-0.636209",
+      "farm": 66,
+      "server": "65535",
+      "secret": "07acc40cc6"
+    },
     {
       "id": "55584476560",
       "title": "Toothpaste clouds",
@@ -6288,8 +6297,8 @@
     {
       "id": "6212196319",
       "title": "The Longest Journey",
-      "lat": "57.139592",
-      "lon": "-4.329986",
+      "lat": "55.949553",
+      "lon": "-3.192142",
       "farm": 7,
       "server": "6220",
       "secret": "1d46d78923"
