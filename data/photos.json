@@ -1,8 +1,17 @@
 {
-  "generatedAt": "2026-10-13T12:53:07.136Z",
-  "totalPhotos": 1161,
+  "generatedAt": "2026-10-14T10:28:30.151Z",
+  "totalPhotos": 1162,
   "owner": "69135870@N00",
   "photos": [
+    {
+      "id": "55588919605",
+      "title": "Cold mountain greeting",
+      "lat": "53.107786",
+      "lon": "-4.033706",
+      "farm": 66,
+      "server": "65535",
+      "secret": "2f3fe11be3"
+    },
     {
       "id": "55586419033",
       "title": "petworth path",
@@ -9924,8 +9933,8 @@
     {
       "id": "2895910248",
       "title": "Falling Leaf",
-      "lat": "52.982033",
-      "lon": "-2.634658",
+      "lat": "51.541891",
+      "lon": "-0.547792",
       "farm": 4,
       "server": "3058",
       "secret": "8cf2a000d5"
@@ -9933,8 +9942,8 @@
     {
       "id": "2895070141",
       "title": "Making its way home",
-      "lat": "52.977408",
-      "lon": "-2.650022",
+      "lat": "51.539535",
+      "lon": "-0.547953",
       "farm": 3,
       "server": "2111",
       "secret": "5a22776c1a"
@@ -9942,8 +9951,8 @@
     {
       "id": "2895888974",
       "title": "Three Grim Teasels",
-      "lat": "52.978312",
-      "lon": "-2.642083",
+      "lat": "51.540022",
+      "lon": "-0.548897",
       "farm": 4,
       "server": "3014",
       "secret": "5a89918671"
@@ -9951,8 +9960,8 @@
     {
       "id": "2895881998",
       "title": "Tree Blocked Sunset",
-      "lat": "52.978312",
-      "lon": "-2.642083",
+      "lat": "51.540810",
+      "lon": "-0.548887",
       "farm": 4,
       "server": "3132",
       "secret": "c18e90a5f2"
@@ -9960,8 +9969,8 @@
     {
       "id": "2895832912",
       "title": "Right path",
-      "lat": "52.984384",
-      "lon": "-2.629809",
+      "lat": "51.538468",
+      "lon": "-0.550335",
       "farm": 4,
       "server": "3159",
       "secret": "30337a4c95"
