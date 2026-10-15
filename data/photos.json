@@ -1,8 +1,17 @@
 {
-  "generatedAt": "2026-10-14T10:28:30.151Z",
-  "totalPhotos": 1162,
+  "generatedAt": "2026-10-15T10:12:31.231Z",
+  "totalPhotos": 1163,
   "owner": "69135870@N00",
   "photos": [
+    {
+      "id": "55591002215",
+      "title": "Military Road",
+      "lat": "50.668036",
+      "lon": "-1.486245",
+      "farm": 66,
+      "server": "65535",
+      "secret": "be5245c1b3"
+    },
     {
       "id": "55588919605",
       "title": "Cold mountain greeting",
