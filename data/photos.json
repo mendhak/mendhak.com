@@ -1,8 +1,17 @@
 {
-  "generatedAt": "2026-10-17T09:36:08.013Z",
-  "totalPhotos": 1165,
+  "generatedAt": "2026-10-18T09:48:08.067Z",
+  "totalPhotos": 1166,
   "owner": "69135870@N00",
   "photos": [
+    {
+      "id": "55596719420",
+      "title": "Dune grass and strong winds",
+      "lat": "53.140230",
+      "lon": "-4.407917",
+      "farm": 66,
+      "server": "65535",
+      "secret": "4bd981e43f"
+    },
     {
       "id": "55594553389",
       "title": "Hallgrímskirkja vertical pano",
