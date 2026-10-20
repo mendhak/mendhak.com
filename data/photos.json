@@ -1,8 +1,17 @@
 {
-  "generatedAt": "2026-10-19T11:05:09.964Z",
-  "totalPhotos": 1167,
+  "generatedAt": "2026-10-20T10:18:33.594Z",
+  "totalPhotos": 1168,
   "owner": "69135870@N00",
   "photos": [
+    {
+      "id": "55599820702",
+      "title": "Standalone cabin",
+      "lat": "46.542855",
+      "lon": "11.646486",
+      "farm": 66,
+      "server": "65535",
+      "secret": "8b877b5356"
+    },
     {
       "id": "55598710939",
       "title": "Glowy Ranmore Commons",
