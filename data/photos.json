@@ -1,8 +1,26 @@
 {
-  "generatedAt": "2026-10-21T10:28:44.922Z",
-  "totalPhotos": 1168,
+  "generatedAt": "2026-10-22T10:28:11.024Z",
+  "totalPhotos": 1170,
   "owner": "69135870@N00",
   "photos": [
+    {
+      "id": "55605264555",
+      "title": "Holyhead Mountain Circular",
+      "lat": "53.309444",
+      "lon": "-4.685067",
+      "farm": 66,
+      "server": "65535",
+      "secret": "864e26ca16"
+    },
+    {
+      "id": "55602799117",
+      "title": "The path up to Y Garn",
+      "lat": "53.109222",
+      "lon": "-4.040309",
+      "farm": 66,
+      "server": "65535",
+      "secret": "f0afa802dc"
+    },
     {
       "id": "55599820702",
       "title": "Standalone cabin",
