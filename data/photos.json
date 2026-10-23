@@ -1,8 +1,17 @@
 {
-  "generatedAt": "2026-10-22T10:28:11.024Z",
-  "totalPhotos": 1170,
+  "generatedAt": "2026-10-23T10:24:36.028Z",
+  "totalPhotos": 1171,
   "owner": "69135870@N00",
   "photos": [
+    {
+      "id": "55606899573",
+      "title": "Yr Wyddfa raindump",
+      "lat": "53.099133",
+      "lon": "-3.932612",
+      "farm": 66,
+      "server": "65535",
+      "secret": "bb253169d8"
+    },
     {
       "id": "55605264555",
       "title": "Holyhead Mountain Circular",
