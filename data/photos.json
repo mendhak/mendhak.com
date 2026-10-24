@@ -1,8 +1,17 @@
 {
-  "generatedAt": "2026-10-23T10:24:36.028Z",
-  "totalPhotos": 1171,
+  "generatedAt": "2026-10-24T09:43:45.390Z",
+  "totalPhotos": 1172,
   "owner": "69135870@N00",
   "photos": [
+    {
+      "id": "55608890504",
+      "title": "These cabins with the most gorgeous view",
+      "lat": "46.545416",
+      "lon": "11.647366",
+      "farm": 66,
+      "server": "65535",
+      "secret": "70a167a8eb"
+    },
     {
       "id": "55606899573",
       "title": "Yr Wyddfa raindump",
