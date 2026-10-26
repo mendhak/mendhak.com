@@ -1,8 +1,17 @@
 {
-  "generatedAt": "2026-10-25T10:01:37.628Z",
-  "totalPhotos": 1173,
+  "generatedAt": "2026-10-26T11:24:36.678Z",
+  "totalPhotos": 1174,
   "owner": "69135870@N00",
   "photos": [
+    {
+      "id": "55613093515",
+      "title": "Afon Lloer walk",
+      "lat": "53.126586",
+      "lon": "-3.991370",
+      "farm": 66,
+      "server": "65535",
+      "secret": "ede6b886f9"
+    },
     {
       "id": "55610502231",
       "title": "The old man and the church in the sea",
