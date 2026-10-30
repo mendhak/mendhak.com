@@ -1,8 +1,17 @@
 {
-  "generatedAt": "2026-10-29T11:40:25.184Z",
-  "totalPhotos": 1175,
+  "generatedAt": "2026-10-30T11:32:06.188Z",
+  "totalPhotos": 1176,
   "owner": "69135870@N00",
   "photos": [
+    {
+      "id": "55621253260",
+      "title": "The Needles Lighthouse",
+      "lat": "50.662955",
+      "lon": "-1.584098",
+      "farm": 66,
+      "server": "65535",
+      "secret": "301207b722"
+    },
     {
       "id": "55617067859",
       "title": "Lily in Wales",
