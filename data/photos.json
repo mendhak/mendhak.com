@@ -1,8 +1,17 @@
 {
-  "generatedAt": "2026-10-30T11:32:06.188Z",
-  "totalPhotos": 1176,
+  "generatedAt": "2026-10-31T11:03:58.707Z",
+  "totalPhotos": 1177,
   "owner": "69135870@N00",
   "photos": [
+    {
+      "id": "55622869654",
+      "title": "Shiny trees",
+      "lat": "51.244650",
+      "lon": "-0.376631",
+      "farm": 66,
+      "server": "65535",
+      "secret": "04a7255e20"
+    },
     {
       "id": "55621253260",
       "title": "The Needles Lighthouse",
