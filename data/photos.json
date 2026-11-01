@@ -1,8 +1,17 @@
 {
-  "generatedAt": "2026-10-31T11:03:58.707Z",
-  "totalPhotos": 1177,
+  "generatedAt": "2026-11-01T11:57:44.362Z",
+  "totalPhotos": 1178,
   "owner": "69135870@N00",
   "photos": [
+    {
+      "id": "55623507657",
+      "title": "Twr Mawr Lighthouse",
+      "lat": "53.136069",
+      "lon": "-4.414928",
+      "farm": 66,
+      "server": "65535",
+      "secret": "a533dafe67"
+    },
     {
       "id": "55622869654",
       "title": "Shiny trees",
