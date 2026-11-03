@@ -1,8 +1,17 @@
 {
-  "generatedAt": "2026-11-02T13:44:52.363Z",
-  "totalPhotos": 1179,
+  "generatedAt": "2026-11-03T12:56:48.521Z",
+  "totalPhotos": 1180,
   "owner": "69135870@N00",
   "photos": [
+    {
+      "id": "55629409550",
+      "title": "The gunpowder magazine and the moon",
+      "lat": "53.320327",
+      "lon": "-4.671814",
+      "farm": 66,
+      "server": "65535",
+      "secret": "8448a840cc"
+    },
     {
       "id": "55626642911",
       "title": "Warrening signs",
