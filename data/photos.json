@@ -1,8 +1,17 @@
 {
-  "generatedAt": "2026-11-12T13:55:51.549Z",
-  "totalPhotos": 1183,
+  "generatedAt": "2026-11-13T13:20:59.106Z",
+  "totalPhotos": 1184,
   "owner": "69135870@N00",
   "photos": [
+    {
+      "id": "55650663155",
+      "title": "Iconic house with subsidence",
+      "lat": "64.769722",
+      "lon": "-23.617509",
+      "farm": 66,
+      "server": "65535",
+      "secret": "2bab461051"
+    },
     {
       "id": "55648333004",
       "title": "Holiday Gate",
