@@ -1,8 +1,17 @@
 {
-  "generatedAt": "2026-11-13T13:20:59.106Z",
-  "totalPhotos": 1184,
+  "generatedAt": "2026-11-14T12:25:17.635Z",
+  "totalPhotos": 1185,
   "owner": "69135870@N00",
   "photos": [
+    {
+      "id": "55651023722",
+      "title": "Isle of last light",
+      "lat": "50.668958",
+      "lon": "-1.488150",
+      "farm": 66,
+      "server": "65535",
+      "secret": "7383f1f84e"
+    },
     {
       "id": "55650663155",
       "title": "Iconic house with subsidence",
