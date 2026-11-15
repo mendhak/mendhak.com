@@ -1,8 +1,17 @@
 {
-  "generatedAt": "2026-11-14T12:25:17.635Z",
-  "totalPhotos": 1185,
+  "generatedAt": "2026-11-15T12:54:32.145Z",
+  "totalPhotos": 1186,
   "owner": "69135870@N00",
   "photos": [
+    {
+      "id": "55654045495",
+      "title": "As seen from the Dinorwic Slate Quarry",
+      "lat": "53.119413",
+      "lon": "-4.111289",
+      "farm": 66,
+      "server": "65535",
+      "secret": "6eccf75df1"
+    },
     {
       "id": "55651023722",
       "title": "Isle of last light",
