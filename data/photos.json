@@ -1,8 +1,17 @@
 {
-  "generatedAt": "2026-11-17T14:47:32.685Z",
-  "totalPhotos": 1187,
+  "generatedAt": "2026-11-18T14:27:15.963Z",
+  "totalPhotos": 1188,
   "owner": "69135870@N00",
   "photos": [
+    {
+      "id": "55660143695",
+      "title": "Tourist drinking near cliffs",
+      "lat": "64.769330",
+      "lon": "-23.618087",
+      "farm": 66,
+      "server": "65535",
+      "secret": "49a977100b"
+    },
     {
       "id": "55655777499",
       "title": "Sheep pasture up near Y Garn",
