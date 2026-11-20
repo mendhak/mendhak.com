@@ -1,8 +1,26 @@
 {
-  "generatedAt": "2026-11-19T14:37:33.710Z",
-  "totalPhotos": 1188,
+  "generatedAt": "2026-11-20T14:15:54.603Z",
+  "totalPhotos": 1190,
   "owner": "69135870@N00",
   "photos": [
+    {
+      "id": "55663944610",
+      "title": "Gloomy introspection",
+      "lat": "53.186747",
+      "lon": "-4.490967",
+      "farm": 66,
+      "server": "65535",
+      "secret": "984c2d9f5f"
+    },
+    {
+      "id": "55662939703",
+      "title": "Bagden",
+      "lat": "51.255547",
+      "lon": "-0.357437",
+      "farm": 66,
+      "server": "65535",
+      "secret": "bc4e9f1367"
+    },
     {
       "id": "55660143695",
       "title": "Tourist drinking near cliffs",
