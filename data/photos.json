@@ -1,8 +1,17 @@
 {
-  "generatedAt": "2026-11-21T14:22:06.111Z",
-  "totalPhotos": 1191,
+  "generatedAt": "2026-11-22T13:31:12.925Z",
+  "totalPhotos": 1192,
   "owner": "69135870@N00",
   "photos": [
+    {
+      "id": "55666954298",
+      "title": "A bit of sunflare",
+      "lat": "51.243697",
+      "lon": "-0.372939",
+      "farm": 66,
+      "server": "65535",
+      "secret": "f292a565f7"
+    },
     {
       "id": "55665616815",
       "title": "South Stack seen from North Stack",
