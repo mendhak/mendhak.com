@@ -1,8 +1,17 @@
 {
-  "generatedAt": "2026-11-23T16:21:18.013Z",
-  "totalPhotos": 1192,
+  "generatedAt": "2026-11-24T16:10:44.226Z",
+  "totalPhotos": 1193,
   "owner": "69135870@N00",
   "photos": [
+    {
+      "id": "55670823528",
+      "title": "Ruins of St Dwynwen's Church",
+      "lat": "53.137836",
+      "lon": "-4.411362",
+      "farm": 66,
+      "server": "65535",
+      "secret": "e6bdda4e99"
+    },
     {
       "id": "55666954298",
       "title": "A bit of sunflare",
