@@ -1,8 +1,17 @@
 {
-  "generatedAt": "2026-11-24T16:10:44.226Z",
-  "totalPhotos": 1193,
+  "generatedAt": "2026-11-25T15:55:38.051Z",
+  "totalPhotos": 1194,
   "owner": "69135870@N00",
   "photos": [
+    {
+      "id": "55672653871",
+      "title": "Cwm Idwal path portrait version",
+      "lat": "53.114763",
+      "lon": "-4.029148",
+      "farm": 66,
+      "server": "65535",
+      "secret": "22b7072a31"
+    },
     {
       "id": "55670823528",
       "title": "Ruins of St Dwynwen's Church",
