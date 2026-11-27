@@ -1,8 +1,17 @@
 {
-  "generatedAt": "2026-11-26T15:36:57.831Z",
-  "totalPhotos": 1195,
+  "generatedAt": "2026-11-27T15:27:55.353Z",
+  "totalPhotos": 1196,
   "owner": "69135870@N00",
   "photos": [
+    {
+      "id": "55676330459",
+      "title": "The Arnarstapi house, ultrawide",
+      "lat": "64.770166",
+      "lon": "-23.618192",
+      "farm": 66,
+      "server": "65535",
+      "secret": "436bac7f95"
+    },
     {
       "id": "55674606254",
       "title": "This sheep's backyard",
